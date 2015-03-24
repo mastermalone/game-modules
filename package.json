@@ -1,0 +1,20 @@
+{
+  "name": "game-modules",
+  "version": "1.0.0",
+  "description": "Game Modules",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Game",
+    "Modules"
+  ],
+  "author": "mastermalone",
+  "license": "ISC",
+  "devDependencies": {
+    "karma": "^0.12.31",
+    "karma-mocha": "^0.1.10",
+    "mocha": "^2.2.1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "game-modules",
+  "version": "0.0.0",
+  "description": "Game MOdules",
+  "main": "app.js",
+  "keywords": [
+    "Games"
+  ],
+  "authors": [
+    "mastermalone"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "requirejs": "~2.1.16"
+  }
+}
