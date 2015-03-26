@@ -1,0 +1,26 @@
+{       
+    "level1": {
+        "image": "https://abcmouse.com/artwork/some-image-level1.png",
+        "completed": false
+    },
+    "level2": {
+        "image": "https://abcmouse.com/artwork/some-image-level2.png",
+        "completed": true
+    },
+    "level3": {
+        "image": "https://abcmouse.com/artwork/some-image-level3.png",
+        "completed": false
+    },
+    "level4": {
+        "image": "https://abcmouse.com/artwork/some-image-level4.png",
+        "completed": true
+    },
+    "level5": {
+        "image": "https://abcmouse.com/artwork/some-image-level5.png",
+        "completed": false
+    },
+    "level6": {
+        "image": "https://abcmouse.com/artwork/some-image-level6.png",
+        "completed": true
+    }
+}

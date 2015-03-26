@@ -1,5 +1,7 @@
 (function () {
-	 define(["Ajax"], function (Ajax) {
+	 define(["Ajax", "CreateNode"], function (Ajax, CreateNode) {
+	     "use strict";
+        console.log("Value of CREATENODE", CreateNode);
 	 	function LevelSelect () {
 	 		//Empty Constructor
 	 	}
@@ -16,14 +18,27 @@
 	 			return targetElm;
 	 		},
 	 		animateLevels: function (Bool) {
-	 			this.animate = false;
-	 			if(!Bool){
+	 			this.animate = Bool;
+	 			if(!this.animate){
 	 				logger.error("You did not set this to true");
 	 				return;
 	 			}
+	 			console.log("Got passed the check for bool", this.animate);
 	 		},
-	 		render: function () {
-	 			console.log("Rendiering the content");
+	 		render: function (data) {
+	 			console.log("Rendiering the content", data);
+	 			var i, levels = data, length = Object.keys(data).length, holder = new CreateNode(), frag = document.createDocumentFragment();
+	 			holder.makeElement("DIV", "id", "level-select", "Level"); 
+	 			for(i = 0; i < length; i++){
+	 			    console.log("length of the object", levels['level'+(i+1)].image);
+	 			    console.log("length of the object", levels['level'+(i+1)].completed);
+	 			    
+	 			}
+	 			/*for(var level in levels){
+	 			    console.log("LEVEL", levels['level'+(i+1)].image);
+	 			    console.log("LEVEL", Object.keys(levels).length);
+	 			}*/
+	 			
 	 		}
 	 	};
 	 	
