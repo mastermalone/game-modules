@@ -5,15 +5,19 @@ define(function(){
     
     CreateNode.prototype = {
         constructor: CreateNode,
-        makeElement: function (type, attr, attrVal, txt) {
-            console.log("Making Element");
-            var el = document.createElement(type);
+        makeElement: function (type, attr, attrVal, txt, addSpan) {
+            var el = document.createElement(type), span = document.createElement("SPAN"), txt;
             el.setAttribute(attr, attrVal);
             
-            if(typeof txt === "string"){
-                var span = document.createElement("SPAN"), txt = document.createTextNode(txt);
+            if(addSpan === true){
+                txt = document.createTextNode(txt);
                 span.appendChild(txt);
                 el.appendChild(span);
+            }else{
+                if(typeof txt === "string"){
+                    txt = document.createTextNode(txt);
+                    el.appendChild(txt);
+                }
             };
             
             return el;

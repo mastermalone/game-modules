@@ -4,6 +4,7 @@
         
         function LevelSelectModel () {
             //Empty Constructor
+            this.data = "";
         }
         
         subClass.extend(LevelSelectModel, BaseModel);
@@ -23,6 +24,8 @@
                     url: url,
                     dataType: "json"
                 }).done(function (data) {
+                    
+                    this.data = data;
                     lsv.on.show(data);//called from the view, gets data passed infrom the model's retrieve data
                 });
             });

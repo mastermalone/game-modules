@@ -6,7 +6,6 @@ body{
 	margin: 30px auto;
 	width:960px;
 	height:650px;
-	padding:20px;
 	background:#ffffff;
 	border:solid 1px #cccccc;
 	border-radius: 10px;
@@ -60,7 +59,7 @@ footer{
 	-webkit-border-radius: 10px;
 	-o-border-radius: 10px;
 }
-#modal-bg #level-select{
+#modal-bg #error{
 	margin:30px auto;
 	width:600px;
 	height:200px;
@@ -88,4 +87,50 @@ footer{
 	-webkit-animation: opacity 1s;
 	-ms-transition: opacity 1s;
 	-o-transition: opacity 1s;
+}
+
+/**********Level Select Module********/
+#level-select{
+	padding:3px 15px;
+	background: #f49f0b;
+	font-weight:normal;
+	font-size:40px;
+	color:#fff;
+	overflow:hidden;
+}
+#level-select div{
+	display:inline-block;
+	float:left;
+	margin-right:20px;
+	cursor:pointer;
+}
+#level-select > span {
+	float:right;
+	cursor:pointer;
+}
+#level-select > span::before{
+	content:"Level";
+	font-size:30px;
+}
+#level-select div, #level-select > span >span{
+	display:inline-block;
+	padding:3px 15px;
+	background: #ffffff;
+	color:#f49f0b;
+	border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-o-border-radius: 30px;
+	-ms-border-radius: 30px;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#level-select > span >span{
+	margin-left:10px;
+}
+#level-select div#select-btn10{
+	padding:3px 4px;	
 }

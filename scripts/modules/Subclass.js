@@ -14,7 +14,7 @@
             
         function SubClass(){
             //Constructor
-            console.log("Constructing");
+            //console.log("Constructing");
         }
         
         //Parasitic inheritence
@@ -24,7 +24,7 @@
                 var copyOfParent = Object.create(parentObj.prototype);
                 copyOfParent.constructor = childObj;
                 childObj.prototype = copyOfParent;
-                console.log("EXTENDING", copyOfParent);
+                //console.log("EXTENDING", copyOfParent);
                 this.applyMembers(childObj, parentObj);
             },
             applyMembers: function (childObj, parentObj, args) {
@@ -35,7 +35,7 @@
                     }else{
                         parentObj.call(childObj.prototype);
                     }
-                    console.log("APPLYING MEMBERS", arguments.length);
+                    //console.log("APPLYING MEMBERS", arguments.length);
                 }());
             }
         };

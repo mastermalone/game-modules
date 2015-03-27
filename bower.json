@@ -19,6 +19,10 @@
     "tests"
   ],
   "devDependencies": {
-    "requirejs": "~2.1.16"
+    "requirejs": "~2.1.16",
+    "SoundJS": "~0.6.0",
+    "EaselJS": "~0.8.0",
+    "PreloadJS": "~0.6.0",
+    "TweenJS": "~0.6.0"
   }
 }
