@@ -16,7 +16,7 @@
 	 			this.el = el;
 	 			var targetElm = document.getElementById(this.el);
 	 			targetElm.appendChild(content);
-	 			return targetElm;
+	 			//return targetElm;
 	 		},
 	 		animateLevels: function (Bool) {
 	 			this.animate = Bool;
@@ -28,7 +28,7 @@
 	 		},
 	 		render: function (data) {
 	 			console.log("Rendiering the content", data);
-	 			//Create elements for the level select view based on the data returned
+	 			//Create elements for the level select view based on the data object returned
 	 			var i, levels = data, length = Object.keys(data[Object.keys(data)]).length, holder = new CreateNode(), hld, selectBtn = new CreateNode(), sb, selector = new CreateNode(), slctr, frag = document.createDocumentFragment();
 	 			
 	 			console.log("VALUE OF FIRST CHILD", Object.keys(data[Object.keys(data)]).length);
@@ -43,7 +43,9 @@
 	 			}
                 frag.appendChild(slctr);
 	 			hld.appendChild(frag);
-	 			return hld;
+	 			
+	 			this.placeContent("main", hld);
+	 			//return hld;
 	 		}
 	 	};
 	 	

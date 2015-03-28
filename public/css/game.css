@@ -97,6 +97,8 @@ footer{
 	font-size:40px;
 	color:#fff;
 	overflow:hidden;
+	float:right;
+	width:180px;
 }
 #level-select div{
 	display:inline-block;
@@ -114,6 +116,7 @@ footer{
 }
 #level-select div, #level-select > span >span{
 	display:inline-block;
+	display:none;
 	padding:3px 15px;
 	background: #ffffff;
 	color:#f49f0b;
@@ -129,7 +132,8 @@ footer{
     user-select: none;
 }
 #level-select > span >span{
-	margin-left:10px;
+	margin:0px 20px 0px 10px;
+	display:inline-block;
 }
 #level-select div#select-btn10{
 	padding:3px 4px;	
