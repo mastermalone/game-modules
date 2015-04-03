@@ -1,5 +1,5 @@
 (function () {
-	 define(["Ajax", "CreateNode"], function (Ajax, CreateNode) {
+	 define(["CreateNode"], function (CreateNode) {
 	     "use strict";
 
 	 	function LevelSelect () {

@@ -3,7 +3,7 @@ define(["LevelSelectController", "LevelSelectModel"], function (LevelSelectContr
 	var App = {
 		init: function () {
 			//Kick off the views
-			var lvc = new LevelSelectController();
+			var lvc = new LevelSelectController("MIKE");
 			lvc.showContent();
 			console.log("Initting the app");
 		}

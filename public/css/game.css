@@ -37,6 +37,9 @@ body{
 	color:#ffffff;
 	text-decoration:none;
 }
+.main-wrap #main{
+	overflow: hidden;
+}
 footer{
 	margin:0px auto;
 	width:600px;
@@ -91,14 +94,14 @@ footer{
 
 /**********Level Select Module********/
 #level-select{
-	padding:3px 15px;
+	padding:3px 0px;
 	background: #f49f0b;
 	font-weight:normal;
 	font-size:40px;
 	color:#fff;
 	overflow:hidden;
 	float:right;
-	width:180px;
+	width:185px;
 }
 #level-select div{
 	display:inline-block;
@@ -109,6 +112,7 @@ footer{
 #level-select > span {
 	float:right;
 	cursor:pointer;
+	padding:0px 15px;
 }
 #level-select > span::before{
 	content:"Level";

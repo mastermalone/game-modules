@@ -3,8 +3,10 @@
         "use strict";
         var subClass = new Subclass(), levleSelectModel = new LevelSelectModel(), evts = new Events();
         
-        function LevelSelectController () {
+        function LevelSelectController (name) {
             //Empty Constuctior
+            this.name = name;
+            console.log("The Args from LVS", arguments);
         }
         //Extend the BaseController with LevelSelectCOntroller
         subClass.extend(LevelSelectController, BaseController);
@@ -17,16 +19,29 @@
         };
         
         LevelSelectController.prototype.addInteraction = function () {
-            evts.addEvent("main", ["mousedown"], this.dispatchEvents);
+            evts.addEvent("main", ["mousedown"], this.fireEvents);
         };
-        LevelSelectController.prototype.dispatchEvents = function (e) {
+        LevelSelectController.prototype.fireEvents = function (e) {
             var targ = window.addEventListener ? e.target : e.srcElement;
             console.log("Target: ", targ.id);
-        };
+            switch (targ.id) {
+                case "selector":
+                this.openLevelSelect(e);
+                console.log("TYPE", typeof targ.childNodes[0].nodeType);
+                switch (targ.childNodes[0].nodeType) {
+                    case 1: this.openLevelSelect(e); console.log("HELLO"); break;
+                }
+                break;
+            }
+        }.bind(LevelSelectController.prototype);
         
-        LevelSelectController.prototype.changeLevel = function (e) {
-            
-        };
+        LevelSelectController.prototype.openLevelSelect = function (e) {
+            var targ = window.addEventListener ? e.target : e.srcElement;
+            console.log("You hit the ", targ.id, "button", "Open Level Select", targ.childNodes[0].nodeType);
+            if (targ.childNodes.length > 0) {
+                console.log("This has child elments");
+            }
+        }.bind(LevelSelectController.prototype);
         
         return LevelSelectController;        
     });
