@@ -1,8 +1,14 @@
 (function () {
-    define(["BaseModel", ], function (BaseModel) {
+    define(["BaseModel"], function (BaseModel) {
         "use strict";
         
-        function BaseController () {
+        function BaseController (names, date, date2, that, you, them) {
+            this.name = names;
+            this.date = date;
+            
+            console.log("ARGS from BASE", Array.prototype.slice.call(arguments[0]), this);
+            //console.log("ARGS from BASE", arguments, this);
+            
             //Empty contructor
         }
         

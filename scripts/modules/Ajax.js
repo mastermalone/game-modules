@@ -35,7 +35,7 @@
 					req.open("GET", url, true);
 					req.send();
 				}catch(err){
-					logger.error("Ajax Module: This browser does not support Ajax");
+					console.log("Ajax Module: This browser does not support Ajax");
 				}
 			}
 			/*getData: function (url, callback, debugging) {

@@ -13,7 +13,7 @@
         }
             
         function SubClass(){
-            //Constructor
+            //Empty Constructor
         }
         
         //Parasitic inheritence
@@ -28,10 +28,10 @@
             },
             applyMembers: function (childObj, parentObj) {
                 //var args = Array.slice(arguments);
-                childObj.prototype.absorb = (function () {
-                    parentObj.call(childObj.prototype, arguments);
-                    //console.log("APPLYING MEMBERS", arguments.length);
-                }());
+                var params = Array.prototype.slice.call(parentObj), val = "Hi";
+                
+                parentObj.call(childObj.prototype, params, val);
+                console.log("ARGUMENTS[1]", params);
             }
         };
         

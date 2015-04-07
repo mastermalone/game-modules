@@ -24,8 +24,13 @@
                     url: url,
                     dataType: "json"
                 }).done(function (data) {
-                    
                     this.data = data;
+                    console.log("VALUE FROM MODEL", data);
+                    
+                    for(var node in data) {
+                        console.log("Nodes", node.puzzle);
+                    }
+                    return this.data;
                     lsv.on.show(data);//called from the view, gets data passed infrom the model's retrieve data
                 });
             });

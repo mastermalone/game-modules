@@ -3,9 +3,10 @@
         "use strict";
         var subClass = new Subclass(), levleSelectModel = new LevelSelectModel(), evts = new Events();
         
-        function LevelSelectController (name) {
+        function LevelSelectController (name, date) {
             //Empty Constuctior
             this.name = name;
+            this.date = date;
             console.log("The Args from LVS", arguments);
         }
         //Extend the BaseController with LevelSelectCOntroller
@@ -14,7 +15,7 @@
         LevelSelectController.prototype.showContent =  function () {
             var date = new Date(); 
             
-            levleSelectModel.retrieveData("json/game.json?a="+date.getTime(), true);//Called from model, which makes an AJAX call, debugging set to true
+            console.log("MODEL DATA", levleSelectModel.retrieveData("json/game.json?a="+date.getTime(), true));//Called from model, which makes an AJAX call, debugging set to true
             this.addInteraction();
         };
         
