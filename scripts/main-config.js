@@ -13,6 +13,10 @@ require.config({
 		"LevelSelectView": "views/LevelSelectView",
 		"LevelSelectController": "controllers/LevelSelectController",
 		"LevelSelectModel": "models/LevelSelectModel",
+		"ModalController": "controllers/ModalController",
+        "ModalModel": "models/ModalModel",
+        "ModalView": "views/ModalView",
+        "ModalViewModule": "modules/ModalViewModule",
 		"Subclass": "modules/Subclass"
 	},
 	//waitSeconds: 15

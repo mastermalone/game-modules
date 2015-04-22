@@ -6,7 +6,7 @@
             this.name = names;
             this.date = date;
             
-            console.log("ARGS from BASE", Array.prototype.slice.call(arguments[0]), this);
+            //console.log("ARGS from BASE", Array.prototype.slice.call(arguments[0]), this);
             //console.log("ARGS from BASE", arguments, this);
             
             //Empty contructor
@@ -14,7 +14,7 @@
         
         BaseController.prototype = {
             constructor: BaseController,
-            shareData: function (data, callback, debugging) {
+            update: function (data, callback, debugging) {
                 //pass Data in from Model and use it in the callback
                 //Call retrieve data from the model, which returns data from and AJAX call
                 //This data should be sent to theview via the callback

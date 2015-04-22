@@ -11,6 +11,7 @@
         subClass.extend(LevelSelectModel, BaseModel);
         
         LevelSelectModel.prototype = {
+            constructor: LevelSelectModel,
             /*retrieveData: function (url, debugging) {
                 if(debugging === true){
                     if(!url || typeof url !== "string"){
@@ -40,7 +41,7 @@
                
             },*/
             setData: function (data) {
-                console.log("Value of set data", data);
+                //console.log("Value of set data", data);
                 return data;
             }
         };

@@ -101,7 +101,7 @@ footer{
 	color:#fff;
 	overflow:hidden;
 	float:right;
-	width:185px;
+	/*width:185px;*/
 }
 #level-select div{
 	display:inline-block;

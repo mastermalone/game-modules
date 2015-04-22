@@ -19,7 +19,7 @@ define(function(){
             
             for(var i = 0; i < list.length; i++){
                 if(window.addEventListener){
-                    console.log("Getting lsitener", list[i]);
+                    //console.log("Getting lsitener", list[i]);
                     //Convert list and use it as the event list
                     targ.addEventListener(list[i], callback, true);
                 }else{

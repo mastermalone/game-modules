@@ -173,7 +173,13 @@
                 "11": [600, 600],
                 "12": [600, 600]
             },   
-            "completed": true
+            "completed": false
         }
+    },
+    "modal": {
+        "header": "Go to level",
+        "cancelTxt": "Cancel",
+        "confirmTxt": "OK"
     }
+    
 }

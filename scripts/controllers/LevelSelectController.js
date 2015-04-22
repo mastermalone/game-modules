@@ -7,16 +7,16 @@
             //Empty Constuctior
             this.name = name;
             this.date = date;
-            console.log("The Args from LVS", arguments);
+            //console.log("The Args from LVS", arguments);
             //The view has a module that requires the data from the model.
             update = function (url) {
                 ajax.getData(url, function (data) {
-                    console.log("Getting Data,", data);
+                    //console.log("Getting Data,", data);
                     lsv.on.show(lsm.setData(data));
                 });
             };
-            
         }
+        
         //Extend the BaseController with LevelSelectCOntroller
         subClass.extend(LevelSelectController, BaseController);
         
@@ -38,8 +38,8 @@
                 switch (targ.id) {
                     case "selector":
                     //this.openLevelSelect(e);
-                    console.log("VALUE OF THIS", this);
-                    console.log("TYPE", typeof targ.childNodes[0].nodeType);
+                    //console.log("VALUE OF THIS", this);
+                    //console.log("TYPE", typeof targ.childNodes[0].nodeType);
                     switch (targ.childNodes[0].nodeType) {
                         case 1: /*this.openLevelSelect(e);*/ console.log("HELLO", this); break;
                     }
