@@ -1,59 +1,49 @@
 (function () {
-    define(["Subclass", "BaseController", "LevelSelectModel", "Events", "Ajax", "LevelSelectView"], function (Subclass, BaseController, LevelSelectModel, Events, Ajax, LevelSelectView) {
+    define(["Subclass", "BaseController", "Events", "Dispatch"], function (Subclass, BaseController,  Events, Dispatch) {
         "use strict";
-        var update, subClass = new Subclass(), lsm = new LevelSelectModel(), evts = new Events(), ajax = new Ajax(), lsv = LevelSelectView;
-        
+        var update, subClass = new Subclass(), evts = new Events(), dsp;
+               
         function LevelSelectController (name, date) {
             //Empty Constuctior
             this.name = name;
             this.date = date;
-            //console.log("The Args from LVS", arguments);
-            //The view has a module that requires the data from the model.
-            update = function (url) {
-                ajax.getData(url, function (data) {
-                    //console.log("Getting Data,", data);
-                    lsv.on.show(lsm.setData(data));
-                });
-            };
+            BaseController.call(this, name, date);
         }
         
         //Extend the BaseController with LevelSelectCOntroller
         subClass.extend(LevelSelectController, BaseController);
-        
-        LevelSelectController.prototype = {
-            updateModel: function (url) {
-               update(url); //Call private method for AJAX request
-            },
-            showContent: function (url) {
-                var date = new Date();
-                this.updateModel(url+"?a="+date.getTime());
-                this.addInteraction();
-            },
-            addInteraction: function () {
-                evts.addEvent("main", ["mousedown"], this.fireEvents);
-            },
-            fireEvents: function (e) {
-                var targ = window.addEventListener ? e.target : e.srcElement;
-                console.log("Target: ", targ.id);
-                switch (targ.id) {
-                    case "selector":
-                    //this.openLevelSelect(e);
-                    //console.log("VALUE OF THIS", this);
-                    //console.log("TYPE", typeof targ.childNodes[0].nodeType);
-                    switch (targ.childNodes[0].nodeType) {
-                        case 1: /*this.openLevelSelect(e);*/ console.log("HELLO", this); break;
-                    }
-                    break;
-                }
-            }.bind(LevelSelectController.prototype),
-            openLevelSelect: function (e) {
-                var targ = window.addEventListener ? e.target : e.srcElement;
-                console.log("You hit the ", targ.id, "button", "Open Level Select", targ.childNodes[0].nodeType);
-                if (targ.childNodes.length > 0) {
-                    console.log("This has child elments");
-                }
-            }.bind(LevelSelectController.prototype)
+                        
+        LevelSelectController.prototype.showContent = function (url) {
+            var date = new Date();
+            this.updateModel(url+"?a="+date.getTime());
+            this.addInteraction();
         };
+        
+        LevelSelectController.prototype.addInteraction = function () {
+            evts.addEvent("main", ["mousedown"], this.fireEvents);
+        };
+        
+        LevelSelectController.prototype.fireEvents = function (e) {
+            var targ = window.addEventListener ? e.target : e.srcElement, isSelectBtn = (targ.id.indexOf("select-btn") !== -1);
+            console.log("Target: ", typeof targ.id, (targ.id.indexOf("select-btn") !== -1));
+            switch (targ.id) {
+                case "selector":
+                //Expand Level Select to view the available levels
+                switch (targ.childNodes[0].nodeType) {
+                    case 1: console.log("HELLO", this); break;
+                }
+                break;
+            }
+            //Dispatch event to open the Level Select Modal
+            switch (isSelectBtn) {
+                case true:
+                dsp = new Dispatch();
+                console.log("Dispatch triggered");
+                dsp.customEvent(targ.id, "displayModal");
+                dsp = null;
+                break;
+            }
+        }.bind(LevelSelectController.prototype);
         
         return LevelSelectController;        
     });

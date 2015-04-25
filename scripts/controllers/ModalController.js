@@ -1,7 +1,7 @@
 (function () {
-    define(["BaseController", "Subclass", "Ajax", "ModalModel", "ModalView"], function (BaseController, SubClass, Ajax, ModalModel, ModalView) {
+    define(["BaseController", "Subclass", "Ajax", "ModalModel", "ModalView", "Events"], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events) {
         "use strict";
-        var subclass = new SubClass, ajax = new Ajax(), date = new Date(), privateUpdate;
+        var subclass = new SubClass, ajax = new Ajax(), date = new Date(), evts = new Events(), privateUpdate;
         
         function ModalContoller () {
             //Empty Constructor
@@ -15,12 +15,13 @@
         subclass.extend(ModalContoller, BaseController);
         
         ModalContoller.prototype = {
-            constructor: ModalContoller,
+            //constructor: ModalContoller,
             init: function () {
-                console.log("Initting Controller");
+                console.log("Initting ModalController", this);
+                evts.addEvent(window, ["displayModal"], this.showModal);
             },
             showModal: function () {
-                console.log("Showing");
+                console.log("LAUNCHING MODAL");
             },
             hideModal: function () {
                 console.log("Hiding");

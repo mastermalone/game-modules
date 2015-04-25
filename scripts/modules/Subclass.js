@@ -25,6 +25,7 @@
                 childObj.prototype = copyOfParent;
                 //console.log("EXTENDING", copyOfParent);
                 this.applyMembers(childObj, parentObj);
+                console.log("THE CONSTRCTOR", childObj.prototype);
             },
             applyMembers: function (childObj, parentObj) {
                 //var args = Array.slice(arguments);
