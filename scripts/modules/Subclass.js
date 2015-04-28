@@ -23,16 +23,14 @@
                 var copyOfParent = Object.create(parentObj.prototype);
                 copyOfParent.constructor = childObj;
                 childObj.prototype = copyOfParent;
-                //console.log("EXTENDING", copyOfParent);
-                this.applyMembers(childObj, parentObj);
-                console.log("THE CONSTRCTOR", childObj.prototype);
+                //this.applyMembers(childObj, parentObj);
+                //console.log("THE CONSTRCTOR", childObj.prototype, arguments);
             },
             applyMembers: function (childObj, parentObj) {
                 //var args = Array.slice(arguments);
-                var params = Array.prototype.slice.call(parentObj), val = "Hi";
+                var params = Array.prototype.slice.call(parentObj);
                 
-                parentObj.call(childObj.prototype, params, val);
-                console.log("ARGUMENTS[1]", params);
+                parentObj.call(childObj.prototype, params);
             }
         };
         

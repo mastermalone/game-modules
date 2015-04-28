@@ -10,17 +10,8 @@
         }
         
         subClass.extend(LevelSelectModel, BaseModel);
+        //Add more methods to prototype if needed
         
-        
-        
-        LevelSelectModel.prototype = {
-            //constructor: LevelSelectModel,
-            
-            setData: function (data) {
-                console.log("Value of this", LevelSelectModel.prototype);
-                return data;
-            }
-        };
         return LevelSelectModel;
     });
 }());

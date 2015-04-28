@@ -1,7 +1,7 @@
 (function () {
-    define(["Subclass", "BaseController", "Events", "Dispatch"], function (Subclass, BaseController,  Events, Dispatch) {
+    define(["Subclass", "BaseController", "LevelSelectModel", "LevelSelectView", "Events", "Dispatch"], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
         "use strict";
-        var update, subClass = new Subclass(), evts = new Events(), dsp;
+        var update, subClass = new Subclass(), evts = new Events(), lsm = new LevelSelectModel(), lsv = LevelSelectView, dsp;
                
         function LevelSelectController (name, date) {
             //Empty Constuctior
@@ -10,12 +10,12 @@
             BaseController.call(this, name, date);
         }
         
-        //Extend the BaseController with LevelSelectCOntroller
+        //Extend the BaseController with LevelSelectController
         subClass.extend(LevelSelectController, BaseController);
-                        
-        LevelSelectController.prototype.showContent = function (url) {
-            var date = new Date();
-            this.updateModel(url+"?a="+date.getTime());
+        
+        LevelSelectController.prototype.showContent = function (data) {
+            //Receives data from the initial app.init() call in app.js
+            this.updateModel(data, lsv.on.show(lsm.setData(data)));
             this.addInteraction();
         };
         

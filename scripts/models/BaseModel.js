@@ -7,7 +7,8 @@
         BaseModel.prototype = {
             constructor: BaseModel,
             setData: function (data) {
-               return data;
+                console.log("Returning data from base", this);
+                return data;
             },
             postData: function (url, debugging) {
                 console.log("Post Data Here");
