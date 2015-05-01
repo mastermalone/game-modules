@@ -177,9 +177,10 @@
         }
     },
     "modal": {
-        "header": "Go to level",
+        "header": "Levle",
+        "subHeader": "Is this the level you want to play?",
         "cancelTxt": "Cancel",
-        "confirmTxt": "OK"
+        "confirmTxt": "&#x2713; &nbsp; &nbsp; Yes"
     }
     
 }
