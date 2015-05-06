@@ -4,7 +4,6 @@
         var subclass = new SubClass, ajax = new Ajax(), date = new Date(), evts = new Events(), mm = new ModalModel(), mv = ModalView, privateUpdate;
         
         function ModalContoller () {
-            //Empty Constructor
            privateUpdate = function (url) {
                ajax.getData(url, function (data) {
                    console.log("Getting Data now", data);

@@ -1,4 +1,5 @@
 define(function(){
+    "use strict";
     function Evt () {
         //Constructor
         var convert = function (list) {
