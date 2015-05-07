@@ -8,6 +8,7 @@ require.config({
 		"BaseView": "views/BaseView",
 		"CreateNode": "modules/CreateNode",
 		"Dispatch": "modules/Dispatch",
+		"domReady": "lib/domReady",
 		"Events": "modules/Events",
 		"jquery": "lib/jquery.min",
 		"LevelSelect": "modules/LevelSelect",

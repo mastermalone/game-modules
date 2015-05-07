@@ -16,9 +16,8 @@
                   return obj.hasOwnProperty(value);
             },
             makeElement: function () {
-                var i, el, frag = document.createDocumentFragment();
+                var i, el, text, frag = document.createDocumentFragment();
                 //Solution for custom parent/child DOMElements
-                //console.log("HAS OWN PROP", this.hasPropery(this.type, "knife"));
                 if (typeof this.type === "object" && this.type.id) {
                     if (document.getElementById(this.type.id[0])) {
                         //console.log("TYPE:", typeof this.type.type, "THE MODAL:", document.getElementById(this.type.id[0]));
@@ -28,7 +27,7 @@
                         for (i = 0; i < this.type.type.length; i++) {
                             el = document.createElement(this.type.type[i]);
                             
-                            //Set the id if it is passed in via the options object (type is an object with options)
+                           //Set options if they have been seet during invocation
                             if (this.type.id) {
                                 if (typeof this.type.id[i] !==  "undefined") {
                                     el.setAttribute("id", this.type.id[i]);
@@ -50,8 +49,15 @@
                                     el.setAttribute("class", +this.defaultID+i+"child-"+i);
                                 }
                             }
-                            if (this.type.makeHeiarachy && i > 0) {
-                                console.log("DATA ATTRIBUTE", el.getAttribute("data-id"), this.type.makeHeiarachy);
+                            if (this.type.text) {
+                                if (typeof this.type.text[i] !==  "object") {
+                                    text = document.createTextNode(this.type.text[i]);
+                                    el.appendChild(text);
+                                }
+                            }
+                            if (this.type.nested && i > 0) {
+                                //If nested is set, create parent child nesting of created DOM elements
+                                console.log("DATA ATTRIBUTE", el.getAttribute("data-id"), this.type.nested);
                                     
                                 if (document.getElementById(this.type.id[i-1])) {
                                     //Append each preceeding element this element as it's child
@@ -59,20 +65,18 @@
                                 }
                             }else {
                                 //Append the first element to the DOM
-                                var parent = document.getElementById(parent);
-                                console.log("PARENT:", parent);
-                                //this.type.parent ?  parent.appendChild(el) : document.body.appendChild(el);
-                                document.body.appendChild(el);
+                                var parent = document.getElementById(this.type.parent);
+                                //console.log("PARENT:", parent);
+                                this.type.parent ?  parent.appendChild(el) : document.body.appendChild(el);
                             }
-                            //console.log("TYPEOF ID", this.type.id[i]);
                         }
                     
                         el = null;
                     }
                 }else {
-                    console.log("THE TYPE WAS NOT AN OBJECT", this.type);
+                    //Single DOM element creation
                     el = document.createElement(this.type);
-                    
+                    el.setAttribute(this.attrs, this.attrVal);
                     return el;
                 }    
             }
