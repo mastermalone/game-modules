@@ -7,6 +7,7 @@ require.config({
 		"BaseModel": "models/BaseModel",
 		"BaseView": "views/BaseView",
 		"CreateNode": "modules/CreateNode",
+		"CssTransitions": "modules/CssTransitionEvents",
 		"Dispatch": "modules/Dispatch",
 		"domReady": "lib/domReady",
 		"Events": "modules/Events",

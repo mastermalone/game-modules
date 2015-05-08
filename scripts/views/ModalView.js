@@ -5,9 +5,9 @@
         console.log("VALUE OF ModalViewModule", ModalViewModule);
         var ModalView = {
             on: {
-                show: function (data) {
+                show: function (data, lvl) {
                     //Send data to modal module
-                    mvm.render(data);
+                    mvm.render(data, lvl);
                 }
             }
         };

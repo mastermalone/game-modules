@@ -20,7 +20,7 @@
         };
         
         LevelSelectController.prototype.addInteraction = function () {
-            evts.addEvent("main", ["mousedown"], this.fireEvents);
+            evts.addEvent("level-select", ["mousedown"], this.fireEvents);
         };
         
         LevelSelectController.prototype.fireEvents = function (e) {

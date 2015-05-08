@@ -33,6 +33,18 @@
                 //Send an object back to the model
                 return dataObject;
             },
+            destroy: function (elm, removeChildNodes) {
+                elm = typeof elm === "string" ? document.getElementById(elm) : elm;
+                //console.log("VALUE OF removeChildNodes", removeChildNodes);
+                if (removeChildNodes) {
+                    while (elm.childNodes.length > 0) {
+                        elm.removeChild(elm.childNodes[0]);
+                    }
+                }else {
+                    elm.parentNode.removeChild(elm);
+                }
+                
+            },
             test: function () {
                 console.log("Inheritence check");
             }
