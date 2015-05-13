@@ -20,7 +20,11 @@ require.config({
         "ModalModel": "models/ModalModel",
         "ModalView": "views/ModalView",
         "ModalViewModule": "modules/ModalViewModule",
-		"Subclass": "modules/Subclass"
+		"Subclass": "modules/Subclass",
+		"TrayController": "controllers/TrayController",		
+		"TrayModel": "models/TrayModel",
+		"TrayModule": "components/TrayModule",
+		"TrayView": "views/TrayView"
 	},
 	//waitSeconds: 15
 });
