@@ -19,9 +19,9 @@
                 (function () {
                     ajax.getData(url, function (data) {
                         /*Pass in the data from this call to the controllers.  
-                        This is the intial call that gets data into the models and subsequently, to the views */                       
+                        This is the intial call that gets data into the models and subsequently, to the views */
                         lvc.showContent(data);//Set up level Select Module
-                        tc.init(data); //Set up the tray that contains
+                        tc.init(data); //Set up the tray that contains the dragable objects 
                         mc.init(data);// Set up Modal Module 
                     });
                 }());

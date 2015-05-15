@@ -2,12 +2,13 @@
     define(function () {
         "use strict";
         
-        function DOMElement (type, attrs, attrVal) {
+        function DOMElement (type, attrs, attrVal, parent) {
             this.defaultID = "element";
             this.type = type;
             this.attrs = attrs;
             this.attrVal = attrVal;
-            this.makeElement(this.type, this.attrs, this.attrVal);
+            this.parent = parent;
+            this.makeElement(this.type, this.attrs, this.attrVal, parent);
         }
         
         DOMElement.prototype = {
@@ -77,7 +78,19 @@
                     //Single DOM element creation
                     el = document.createElement(this.type);
                     el.setAttribute(this.attrs, this.attrVal);
-                    return el;
+                    if(this.parent && typeof this.parent === "string") {
+                        if(this.parent) {
+                            var prnt = document.getElementById(this.parent);
+                            prnt.appendChild(el);
+                        }else {
+                            throw new Error("The parent you specififed does not exist");
+                            return;
+                        }
+                        
+                    }else {
+                        return el; //Use without parent option for adding multiple elements to dom via a document fragmen
+                    }
+                    
                 }    
             }
         };
