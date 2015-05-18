@@ -13,6 +13,12 @@
         //Extend the BaseController with LevelSelectController
         subClass.extend(LevelSelectController, BaseController);
         
+        LevelSelectController.prototype.init = function (data) {
+            evts.addEvent(window, ["levelSelect"], function (e) {
+                console.log("THIS SHOULD BE OPENING");
+                this.showContent(data);
+            }.bind(LevelSelectController.prototype));  
+        };
         LevelSelectController.prototype.showContent = function (data) {
             //Receives data from the initial app.init() call in app.js
             this.updateModel(data, lsv.on.show(lsm.setData(data)));

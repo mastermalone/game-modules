@@ -24,7 +24,8 @@ require.config({
 		"TrayController": "controllers/TrayController",		
 		"TrayModel": "models/TrayModel",
 		"TrayModule": "components/TrayModule",
-		"TrayView": "views/TrayView"
+		"TrayView": "views/TrayView",
+		"Tween": "lib/tweenjs/tweenjs-0.6.0.min"
 	},
 	//waitSeconds: 15
 });
