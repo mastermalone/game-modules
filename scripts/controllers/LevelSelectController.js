@@ -1,13 +1,16 @@
 (function () {
-    define(["Subclass", "BaseController", "LevelSelectModel", "LevelSelectView", "Events", "Dispatch", "Tween"], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
+    define(["Subclass", "BaseController", "LevelSelectModel", "LevelSelectView", "Events", "Dispatch", "Easel", "Tween"], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
         "use strict";
         var update, subClass = new Subclass(), evts = new Events(), lsm = new LevelSelectModel(), lsv = LevelSelectView, dsp, tween;
-               
-        function LevelSelectController (name, date) {
+				
+		var canvas = document.createElement("canvas");
+		var stage = new createjs.Stage(canvas);
+		
+		tween = new createjs.Tween({x:0, y:0});
+		console.log("VALUE OF EASEL", stage, "Tween:", tween); 
+        function LevelSelectController () {
             //Empty Constuctior
-            this.name = name;
-            this.date = date;
-            BaseController.call(this, name, date);
+            BaseController.call(this);
         }
         
         //Extend the BaseController with LevelSelectController
@@ -23,10 +26,6 @@
             //Receives data from the initial app.init() call in app.js
             this.updateModel(data, lsv.on.show(lsm.setData(data)));
             this.addInteraction();
-            alert("VALUE OF TWEEN: "+Tween);
-            tween = new Tween();
-            //console.log("VALUE OF TWEEN", tween);
-            
         };
         
         LevelSelectController.prototype.addInteraction = function () {

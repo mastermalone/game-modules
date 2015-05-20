@@ -3,10 +3,7 @@
         "use strict";
         var ajax = new Ajax(), debugging = false, update, lsm = new LevelSelectModel(), lsv = LevelSelectView;
         
-        function BaseController (names, date, date2, that, you, them) {
-            this.name = names;
-            this.date = date;
-            
+        function BaseController () {            
             //console.log("ARGS from BASE", Array.prototype.slice.call(arguments[0]), this);
             //console.log("ARGS from BASE", arguments, this);
         }
