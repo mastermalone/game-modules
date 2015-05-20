@@ -1,7 +1,7 @@
 (function () {
-    define(["Subclass", "BaseController", "LevelSelectModel", "LevelSelectView", "Events", "Dispatch"], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
+    define(["Subclass", "BaseController", "LevelSelectModel", "LevelSelectView", "Events", "Dispatch", "Tween"], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
         "use strict";
-        var update, subClass = new Subclass(), evts = new Events(), lsm = new LevelSelectModel(), lsv = LevelSelectView, dsp;
+        var update, subClass = new Subclass(), evts = new Events(), lsm = new LevelSelectModel(), lsv = LevelSelectView, dsp, tween;
                
         function LevelSelectController (name, date) {
             //Empty Constuctior
@@ -23,6 +23,10 @@
             //Receives data from the initial app.init() call in app.js
             this.updateModel(data, lsv.on.show(lsm.setData(data)));
             this.addInteraction();
+            alert("VALUE OF TWEEN: "+Tween);
+            tween = new Tween();
+            //console.log("VALUE OF TWEEN", tween);
+            
         };
         
         LevelSelectController.prototype.addInteraction = function () {
