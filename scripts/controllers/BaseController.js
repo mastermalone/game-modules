@@ -24,7 +24,7 @@
                     callback(data);
                 }
                 //lsv.on.show(lsm.setData(data));
-                console.log("UPDATING FROM BASE", this, "VALUE OF data", data);
+                //console.log("UPDATING FROM BASE", this, "VALUE OF data", data);
             },
             sendData: function (dataObject) {
                 //Send an object back to the model
@@ -43,7 +43,7 @@
                 
             },
             test: function () {
-                console.log("Inheritence check");
+                //console.log("Inheritence check");
             }
         };
         

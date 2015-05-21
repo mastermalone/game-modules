@@ -2,13 +2,14 @@
     define(function () {
         "use strict";
         
-        function DOMElement (type, attrs, attrVal, parent) {
+        function DOMElement (type, attrs, attrVal, parent, text) {
             this.defaultID = "element";
             this.type = type;
             this.attrs = attrs;
             this.attrVal = attrVal;
             this.parent = parent;
-            this.makeElement(this.type, this.attrs, this.attrVal, parent);
+            this.text = text;
+            this.makeElement(this.type, this.attrs, this.attrVal, parent, text);
         }
         
         DOMElement.prototype = {
@@ -27,9 +28,11 @@
                         //Create the DOM elements                        
                         for (i = 0; i < this.type.type.length; i++) {
                             el = document.createElement(this.type.type[i]);
-                            
+                                                        
                            //Set options if they have been seet during invocation
                             if (this.type.id) {
+                                console.log(this.type.hasOwnProperty());
+                                
                                 if (typeof this.type.id[i] !==  "undefined") {
                                     el.setAttribute("id", this.type.id[i]);
                                 }else {
@@ -58,7 +61,6 @@
                             }
                             if (this.type.nested && i > 0) {
                                 //If nested is set, create parent child nesting of created DOM elements
-                                console.log("DATA ATTRIBUTE", el.getAttribute("data-id"), this.type.nested);
                                     
                                 if (document.getElementById(this.type.id[i-1])) {
                                     //Append each preceeding element this element as it's child
@@ -67,7 +69,6 @@
                             }else {
                                 //Append the first element to the DOM
                                 var parent = document.getElementById(this.type.parent);
-                                //console.log("PARENT:", parent);
                                 this.type.parent ?  parent.appendChild(el) : document.body.appendChild(el);
                             }
                         }
@@ -77,21 +78,21 @@
                 }else {
                     //Single DOM element creation
                     el = document.createElement(this.type);
+                    
                     el.setAttribute(this.attrs, this.attrVal);
-                    if(this.parent && typeof this.parent === "string") {
-                        if(this.parent) {
-                            var prnt = document.getElementById(this.parent);
-                            prnt.appendChild(el);
-                        }else {
-                            throw new Error("The parent you specififed does not exist");
-                            return;
-                        }
-                        
-                    }else {
-                        return el; //Use without parent option for adding multiple elements to dom via a document fragmen
+                    console.log("Setting el", el);
+                    
+                    var prnt = (typeof this.parent === "string") ? document.getElementById(this.parent) : this.parent;
+                    
+                    //Add text node if the text parameter contains a string
+                    if (this.text && typeof this.text === "string") {
+                        var txt = document.createTextNode(this.text);
+                        el.appendChild(txt);
                     }
                     
-                }    
+                    prnt.appendChild(el);
+                    el = null;
+                }                 
             }
         };
         

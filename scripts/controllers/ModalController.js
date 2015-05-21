@@ -16,7 +16,7 @@
         subclass.extend(ModalContoller, BaseController);
         
         ModalContoller.prototype.init = function (data) {
-            console.log("Initting ModalController", this);
+            //console.log("Initting ModalController", this);
             evts.addEvent(window, ["displayModal"], function (e) {                
                 lvlNum = e.target.id.substring(10, parseInt(e.target.id.length));
                 this.showModal(data, lvlNum);
@@ -57,7 +57,7 @@
         
         ModalContoller.prototype.transitionFinished = function (e) {
             this.destroy(e.target.id);
-            console.log("finished");
+            //console.log("finished");
         }.bind(ModalContoller.prototype);
         
         ModalContoller.prototype.changeLevel = function () {
