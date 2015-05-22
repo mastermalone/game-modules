@@ -80,8 +80,7 @@
                     el = document.createElement(this.type);
                     
                     el.setAttribute(this.attrs, this.attrVal);
-                    console.log("Setting el", el);
-                    
+                                        
                     var prnt = (typeof this.parent === "string") ? document.getElementById(this.parent) : this.parent;
                     
                     //Add text node if the text parameter contains a string

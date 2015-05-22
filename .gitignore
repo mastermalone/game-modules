@@ -1,2 +1,13 @@
 bower_components
 node_modules
+scripts/createjs-tweenjs/_assets
+scripts/createjs-tweenjs/bower.json
+scripts/createjs-tweenjs/build
+scripts/createjs-tweenjs/examples
+scripts/createjs-tweenjs/icon.png
+scripts/createjs-tweenjs/LICENSE.txt
+scripts/createjs-tweenjs/package.json
+scripts/createjs-tweenjs/README.md
+scripts/createjs-tweenjs/tests
+scripts/createjs-tweenjs/VERSIONS.txt
+

@@ -1,7 +1,18 @@
 (function () {
-    define(["BaseController", "Subclass", "Ajax", "ModalModel", "ModalView", "Events", "CssTransitions"], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, CssTransitions) {
+    define(["BaseController", "Subclass", "Ajax", "ModalModel", "ModalView", "Events", "CssTransitions", "Dispatch"], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, CssTransitions, Dispatch) {
         "use strict";
-        var subclass = new SubClass, ajax = new Ajax(), date = new Date(), evts = new Events(), mm = new ModalModel(), mv = ModalView, transitionEnd = CssTransitions.transitionEnd(), privateUpdate, lvlNum, targ, modal;
+        var subclass = new SubClass, 
+        ajax = new Ajax(), 
+        date = new Date(), 
+        evts = new Events(), 
+        mm = new ModalModel(), 
+        mv = ModalView, 
+        transitionEnd = CssTransitions.transitionEnd(), 
+        privateUpdate, 
+        lvlNum, 
+        targ, 
+        modal,
+        dsp;
         
         function ModalContoller () {
            privateUpdate = function (url) {
@@ -56,8 +67,11 @@
         };
         
         ModalContoller.prototype.transitionFinished = function (e) {
-            this.destroy(e.target.id);
-            //console.log("finished");
+            var targ = window.addEventLsitener ? e.target : e.srcElement;
+            dsp = new Dispatch();
+            dsp.customEvent(targ.id, "retract");
+            this.destroy(targ.id);
+            dsp = null;
         }.bind(ModalContoller.prototype);
         
         ModalContoller.prototype.changeLevel = function () {
