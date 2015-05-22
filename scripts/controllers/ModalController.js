@@ -54,9 +54,6 @@
                 this.hideModal();
                 break;
                 case "confirm":
-                evts.addEvent(window, ["setLevel"], function () {
-                    console.log("WTF!!!!!");
-                });
                 //evts.addEvent(window, ["retract"], this.retract);
                 this.changeLevel();
                 this.hideModal();
