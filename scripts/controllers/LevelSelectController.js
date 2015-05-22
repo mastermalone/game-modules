@@ -1,6 +1,7 @@
 (function () {
     define(["Subclass", "BaseController", "LevelSelectModel", "LevelSelectView", "Events", "Dispatch", "Easel", "Tween", "TweenCSS"], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
         "use strict";
+        
         var update, 
         subClass = new Subclass(), 
         evts = new Events(), 
@@ -10,16 +11,12 @@
         tween,
         position = {},
         target = {};
-				
 			
-		var canvas = document.createElement("canvas");
-        var stage = new createjs.Stage(canvas);
-        
-        tween = new createjs.Tween({x:0, y:0});
-        console.log("VALUE OF EASEL", stage, "Tween:", tween); 
+		//var canvas = document.createElement("canvas");
+        //var stage = new createjs.Stage(canvas); 
 		
         function LevelSelectController () {
-            //Empty Constuctior
+            this.retracted = false;
             BaseController.call(this);
         }
         
@@ -37,8 +34,9 @@
         LevelSelectController.prototype.showLevelSelect = function (data) {
             //Receives data from the initial app.init() call in app.js
             var ls;
-            
+            this.retracted = false;
             this.updateModel(data, lsv.on.show(lsm.setData(data)));
+                        
             ls = document.getElementById("level-select"), position, target;
             
             position = {left: ls.parentNode.offsetWidth, top: 0};
@@ -61,7 +59,8 @@
             tween = new createjs.Tween.get(elm)
             .wait(0)
             .to(from)
-            .to(to, time, easing);
+            .to(to, time, easing)
+            .call(this.handleComplete);
             
             createjs.Ticker.setFPS(60);
         };
@@ -88,19 +87,27 @@
                 dsp = new Dispatch();
                 console.log("Dispatch triggered");
                 dsp.customEvent(targ.id, "displayModal");
+                dsp.customEvent(targ.id, "setLevel");
                 dsp = null;
                 break;
             }
         }.bind(LevelSelectController.prototype);
         
         LevelSelectController.prototype.retract = function (e) {
-            console.log("CALLING RETRACT from displatched event", e.type);
             var ls = document.getElementById("level-select"), position, target;
             
             position = {left: 0, top: 0};
             target = {left: ls.parentNode.offsetWidth, top: 0};
             
             this.animate(ls, position, target, createjs.Ease.cubicIn, 1000);
+            this.retracted = true;
+        }.bind(LevelSelectController.prototype);
+        
+        LevelSelectController.prototype.handleComplete = function () {
+            var ls = document.getElementById("level-select");
+            if (this.retracted) {
+                ls.parentNode.removeChild(ls);
+            }
         }.bind(LevelSelectController.prototype);
         
         return LevelSelectController;        

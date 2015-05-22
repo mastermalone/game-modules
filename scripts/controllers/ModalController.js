@@ -54,6 +54,10 @@
                 this.hideModal();
                 break;
                 case "confirm":
+                evts.addEvent(window, ["setLevel"], function () {
+                    console.log("WTF!!!!!");
+                });
+                //evts.addEvent(window, ["retract"], this.retract);
                 this.changeLevel();
                 this.hideModal();
                 break;
@@ -67,15 +71,20 @@
         };
         
         ModalContoller.prototype.transitionFinished = function (e) {
-            var targ = window.addEventLsitener ? e.target : e.srcElement;
+            console.log("VALUE OF TARGET", e.target); 
+            var targ = window.addEventListener ? e.target : e.srcElement;
+            console.log("THE TARGET", targ);
             dsp = new Dispatch();
             dsp.customEvent(targ.id, "retract");
-            this.destroy(targ.id);
             dsp = null;
+            this.destroy(targ.id);
         }.bind(ModalContoller.prototype);
         
         ModalContoller.prototype.changeLevel = function () {
             //Use lvlNum to send the number of the level to the API or whatever means to change the current level
+            dsp = new Dispatch();
+            dsp.customEvent(targ.id, "levelChangeConfirmation");
+            dsp = null;
             console.log("FIRST HIDE, THEN CHANGE THE LEVEL");
         };
         
