@@ -1,8 +1,8 @@
 (function () {
-    define(["ModalViewModule"], function (ModalViewModule) {
-        "use strict";
+    define(['ModalViewModule'], function (ModalViewModule) {
+        'use strict';
         var mvm = ModalViewModule;
-        console.log("VALUE OF ModalViewModule", ModalViewModule);
+        console.log('VALUE OF ModalViewModule', ModalViewModule);
         var ModalView = {
             on: {
                 show: function (data, lvl) {

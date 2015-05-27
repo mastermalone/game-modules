@@ -1,6 +1,6 @@
 (function () {
-    define(["Subclass", "BaseController", "TrayModel", "TrayView", "Dispatch", "Events"], function (Subclass, BaseController, TrayModel, TrayView, Dispatch, Events) {
-        "use strict";
+    define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'Dispatch', 'Events'], function (Subclass, BaseController, TrayModel, TrayView, Dispatch, Events) {
+        'use strict';
         var subclass = new Subclass(), tm = new TrayModel(), tv = TrayView, dsp = new Dispatch(), evts = new Events();
         
         function TrayController () {
@@ -13,19 +13,19 @@
         TrayController.prototype.init = function (data) {
             //This controller listens the level changes and controls the puzzle pieces
             tv.on.show(tm.setData(data));//Do the level select on.show() with an evt.addListener();  displatch event rom here with level select dispatch event
-            evts.addEvent("tray", ["mousedown"], this.fireEvents);
-            evts.addEvent(window, ["setLevel"], this.setLevel);
-            evts.addEvent(window, ["levelChangeConfirmation"], this.confirmedLevelChange);
+            evts.addEvent('tray', ['mousedown'], this.fireEvents);
+            evts.addEvent(window, ['setLevel'], this.setLevel);
+            evts.addEvent(window, ['levelChangeConfirmation'], this.confirmedLevelChange);
         };
         
         TrayController.prototype.fireEvents = function (e) {
             var targ = window.addEventListener ? e.target : e.srcElement;
             
             switch (targ.id) {
-                case "level-selector":
-                dsp.customEvent("level-selector", "levelSelect");
+                case 'level-selector':
+                dsp.customEvent('level-selector', 'levelSelect');
                 break;
-                case "level-indicator":
+                case 'level-indicator':
                 //Do stuff ..maybe
                 break;
             }
@@ -38,7 +38,11 @@
         
         TrayController.prototype.confirmedLevelChange = function () {
             //This is called only when an event to change the level number occurs
-            document.getElementById("level-indicator").innerHTML = this.level;
+            var lInd = document.getElementById('level-indicator');
+            lInd.innerHTML = this.level;
+            this.level >= 10 ? lInd.className = 'tens' : lInd.className = '';
+            
+            
             
         }.bind(TrayController.prototype);
         

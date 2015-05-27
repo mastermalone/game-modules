@@ -1,6 +1,6 @@
 (function () {
-    define(["LevelSelectController", "ModalController", "TrayController", "GameBoardController", "Ajax"], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax) {
-        "use strict";
+    define(['LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax'], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax) {
+        'use strict';
         var ajax = new Ajax(); 
         var App = {
             setAPIURL: function (url) {
@@ -9,8 +9,8 @@
                 };  
             },
             update: function (url) {
-                if (!url || typeof url !== "string") {
-                    console.log("app.js:  You did not provide a URL or, the type of argument you passed in is not a string.");
+                if (!url || typeof url !== 'string') {
+                    console.log('app.js:  You did not provide a URL or, the type of argument you passed in is not a string.');
                     return;
                 }
                 var lvc = new LevelSelectController(), 
@@ -33,8 +33,8 @@
             init: function (url) {
                 var date = new Date(); //NEW
                 //Kick off the App
-                this.update(url+"?a="+date.getTime());
-                console.log("Initting the app");
+                this.update(url+'?a='+date.getTime());
+                console.log('Initting the app');
             }
         };
         return App;

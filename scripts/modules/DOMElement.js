@@ -47,10 +47,10 @@
                                 }
                             }
                             if (this.type.className) {
-                                if (typeof this.type.className[i] !==  "undefined") {
+                                if (typeof this.type.className[i] !==  "object") {
                                     el.setAttribute("class", this.type.className[i]);
                                 }else {
-                                    el.setAttribute("class", +this.defaultID+i+"child-"+i);
+                                    //el.setAttribute("class", +this.defaultID+i+"child-"+i);
                                 }
                             }
                             if (this.type.text) {

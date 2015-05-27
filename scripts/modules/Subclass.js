@@ -1,8 +1,8 @@
 (function () {
     define(function(){
-        "use strict";
+        'use strict';
         
-        if (Object.create !== "function") {
+        if (Object.create !== 'function') {
             Object.create = function(o){
                 var F = function(){
                     //Empty consturctor
@@ -23,14 +23,6 @@
                 var copyOfParent = Object.create(parentObj.prototype);
                 copyOfParent.constructor = childObj;
                 childObj.prototype = copyOfParent;
-                //this.applyMembers(childObj, parentObj);
-                //console.log("THE CONSTRCTOR", childObj.prototype, arguments);
-            },
-            applyMembers: function (childObj, parentObj) {
-                //var args = Array.slice(arguments);
-                var params = Array.prototype.slice.call(parentObj);
-                
-                parentObj.call(childObj.prototype, params);
             }
         };
         

@@ -1,6 +1,6 @@
 (function () {
-    define(["Subclass", "BaseController", "LevelSelectModel", "LevelSelectView", "Events", "Dispatch", "Easel", "Tween", "TweenCSS"], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
-        "use strict";
+    define(['Subclass', 'BaseController', 'LevelSelectModel', 'LevelSelectView', 'Events', 'Dispatch', 'Easel', 'Tween', 'TweenCSS'], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
+        'use strict';
         
         var update, 
         subClass = new Subclass(), 
@@ -12,7 +12,7 @@
         position = {},
         target = {};
 			
-		//var canvas = document.createElement("canvas");
+		//var canvas = document.createElement('canvas');
         //var stage = new createjs.Stage(canvas); 
 		
         function LevelSelectController () {
@@ -24,8 +24,8 @@
         subClass.extend(LevelSelectController, BaseController);
         
         LevelSelectController.prototype.init = function (data) {
-            evts.addEvent(window, ["levelSelect"], function (e) {
-                //console.log("THIS SHOULD BE OPENING");
+            evts.addEvent(window, ['levelSelect'], function (e) {
+                //console.log('THIS SHOULD BE OPENING');
                 this.showLevelSelect(data);
             }.bind(LevelSelectController.prototype));  
             
@@ -37,8 +37,8 @@
             this.retracted = false;
             this.updateModel(data, lsv.on.show(lsm.setData(data)));
                         
-            ls = document.getElementById("level-select"), position, target;
-            
+            ls = document.getElementById('level-select'), position, target;
+            ls.style.left = ls.parentNode.offsetWidth+'px';
             position = {left: ls.parentNode.offsetWidth, top: 0};
             target = {left: 0, top: 0};
                         
@@ -47,14 +47,12 @@
         };
         
         LevelSelectController.prototype.animate = function (el, from, to, easing, time) {
-            var elm = typeof el === "string" ? document.getElementById("level-select") : el;
+            
+            //Animates the level select from left to right
+            var elm = typeof el === 'string' ? document.getElementById('level-select') : el;
             
             createjs.CSSPlugin.install(createjs.Tween);
-            
-            elm.style.width = elm.parentNode.offsetWidth+"px";
-            elm.style.left = elm.parentNode.offsetWidth+"px";
-            
-            console.log("E,TARGET from NEW STUFF: ", elm.parentNode.offsetWidth, typeof elm.parentNode.offsetWidth, "VALUE OF TICKER", createjs.Ticker);
+            elm.style.width = elm.parentNode.offsetWidth+'px';
             
             tween = new createjs.Tween.get(elm)
             .wait(0)
@@ -66,18 +64,18 @@
         };
         
         LevelSelectController.prototype.addInteraction = function () {
-            evts.addEvent("level-select", ["mousedown"], this.fireEvents);
-            evts.addEvent(window, ["retract"], this.retract);
+            evts.addEvent('level-select', ['mousedown'], this.fireEvents);
+            evts.addEvent(window, ['retract'], this.retract);
         };
         
         LevelSelectController.prototype.fireEvents = function (e) {
-            var targ = window.addEventListener ? e.target : e.srcElement, isSelectBtn = (targ.id.indexOf("select-btn") !== -1);
-            console.log("Target: ", typeof targ.id, (targ.id.indexOf("select-btn") !== -1));
+            var targ = window.addEventListener ? e.target : e.srcElement, isSelectBtn = (targ.id.indexOf('select-btn') !== -1);
+            console.log('Target: ', typeof targ.id, (targ.id.indexOf('select-btn') !== -1));
             switch (targ.id) {
-                case "selector":
+                case 'selector':
                 //Expand Level Select to view the available levels
                 switch (targ.childNodes[0].nodeType) {
-                    case 1: console.log("HELLO", this); break;
+                    case 1: console.log('HELLO', this); break;
                 }
                 break;
             }
@@ -85,16 +83,16 @@
             switch (isSelectBtn) {
                 case true:
                 dsp = new Dispatch();
-                console.log("Dispatch triggered");
-                dsp.customEvent(targ.id, "displayModal");
-                dsp.customEvent(targ.id, "setLevel");
+                console.log('Dispatch triggered');
+                dsp.customEvent(targ.id, 'displayModal');
+                dsp.customEvent(targ.id, 'setLevel');
                 dsp = null;
                 break;
             }
         }.bind(LevelSelectController.prototype);
         
         LevelSelectController.prototype.retract = function (e) {
-            var ls = document.getElementById("level-select"), position, target;
+            var ls = document.getElementById('level-select'), position, target;
             
             position = {left: 0, top: 0};
             target = {left: ls.parentNode.offsetWidth, top: 0};
@@ -104,7 +102,7 @@
         }.bind(LevelSelectController.prototype);
         
         LevelSelectController.prototype.handleComplete = function () {
-            var ls = document.getElementById("level-select");
+            var ls = document.getElementById('level-select');
             if (this.retracted) {
                 ls.parentNode.removeChild(ls);
             }

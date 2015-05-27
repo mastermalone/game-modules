@@ -1,6 +1,6 @@
 (function () {
     define(function () {
-        "use strict";
+        'use strict';
         function Dispatch () {
             //Empty
         }
@@ -14,14 +14,14 @@
                 if (window.Event) {
                     evt = new Event(type);
                 }else {
-                    evt =  document.createEvent("Event");
+                    evt =  document.createEvent('Event');
                     evt.initEvent(type, true, true);
                 }
                 
-                elm = typeof dispatchElement === "string" ? elm = document.getElementById(dispatchElement) : dispatchElement;
+                elm = typeof dispatchElement === 'string' ? elm = document.getElementById(dispatchElement) : dispatchElement;
                 elm.dispatchEvent(evt);
                 
-                console.log("Getting into  Dispatch", typeof elm, type, "dispatcher name:", elm);
+                console.log('Getting into  Dispatch', typeof elm, type, 'dispatcher name:', elm);
             }
         };
         return Dispatch;

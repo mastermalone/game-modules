@@ -1,6 +1,6 @@
 (function () {
-    define(["BaseController", "Subclass", "Ajax", "ModalModel", "ModalView", "Events", "CssTransitions", "Dispatch"], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, CssTransitions, Dispatch) {
-        "use strict";
+    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Events', 'CssTransitions', 'Dispatch'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, CssTransitions, Dispatch) {
+        'use strict';
         var subclass = new SubClass, 
         ajax = new Ajax(), 
         date = new Date(), 
@@ -17,7 +17,7 @@
         function ModalContoller () {
            privateUpdate = function (url) {
                ajax.getData(url, function (data) {
-                   console.log("Getting Data now", data);
+                   console.log('Getting Data now', data);
                });
            };
            
@@ -27,13 +27,12 @@
         subclass.extend(ModalContoller, BaseController);
         
         ModalContoller.prototype.init = function (data) {
-            //console.log("Initting ModalController", this);
-            evts.addEvent(window, ["displayModal"], function (e) {                
+            evts.addEvent(window, ['displayModal'], function (e) {                
                 lvlNum = e.target.id.substring(10, parseInt(e.target.id.length));
                 this.showModal(data, lvlNum);
             }.bind(ModalContoller.prototype));
             
-            evts.addEvent(window, ["modalLoaded"], this.addInteraction.bind(ModalContoller.prototype));
+            evts.addEvent(window, ['modalLoaded'], this.addInteraction.bind(ModalContoller.prototype));
         };
         
         ModalContoller.prototype.showModal = function (data, lvl) {
@@ -44,17 +43,16 @@
         ModalContoller.prototype.addInteraction = function (e) {
             //Add event to the modal DOM Element;
             modal = e.target.id;
-            evts.addEvent(modal, ["mousedown"], this.fireEvents);
+            evts.addEvent(modal, ['mousedown'], this.fireEvents);
         };
         
         ModalContoller.prototype.fireEvents = function (e) {
             targ = window.addEventListener ? e.target : e.srcElement;
             switch (targ.id) {
-                case "cancel":
+                case 'cancel':
                 this.hideModal();
                 break;
-                case "confirm":
-                //evts.addEvent(window, ["retract"], this.retract);
+                case 'confirm':
                 this.changeLevel();
                 this.hideModal();
                 break;
@@ -63,16 +61,14 @@
         }.bind(ModalContoller.prototype);
         
         ModalContoller.prototype.hideModal = function () {
-            document.getElementById(modal).className = "fade-out";
+            document.getElementById(modal).className = 'fade-out';
             evts.addEvent(modal, [transitionEnd], this.transitionFinished);
         };
         
         ModalContoller.prototype.transitionFinished = function (e) {
-            console.log("VALUE OF TARGET", e.target); 
             var targ = window.addEventListener ? e.target : e.srcElement;
-            console.log("THE TARGET", targ);
             dsp = new Dispatch();
-            dsp.customEvent(targ.id, "retract");
+            dsp.customEvent(targ.id, 'retract');
             dsp = null;
             this.destroy(targ.id);
         }.bind(ModalContoller.prototype);
@@ -80,9 +76,8 @@
         ModalContoller.prototype.changeLevel = function () {
             //Use lvlNum to send the number of the level to the API or whatever means to change the current level
             dsp = new Dispatch();
-            dsp.customEvent(targ.id, "levelChangeConfirmation");
+            dsp.customEvent(targ.id, 'levelChangeConfirmation');
             dsp = null;
-            console.log("FIRST HIDE, THEN CHANGE THE LEVEL");
         };
         
         return ModalContoller;
