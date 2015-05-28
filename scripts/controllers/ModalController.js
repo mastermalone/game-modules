@@ -1,5 +1,5 @@
 (function () {
-    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Events', 'CssTransitions', 'Dispatch'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, CssTransitions, Dispatch) {
+    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Events', 'CssTransitions', 'Dispatch', 'Tween', 'TweenCSS'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, CssTransitions, Dispatch) {
         'use strict';
         var subclass = new SubClass, 
         ajax = new Ajax(), 

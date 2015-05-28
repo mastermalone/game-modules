@@ -1,7 +1,7 @@
 (function () {
-    define(['BaseModel', 'Ajax', 'LevelSelectModel', 'LevelSelectView'], function (BaseModel, Ajax, LevelSelectModel, LevelSelectView) {
+    define(['BaseModel', 'Ajax', 'LevelSelectModel', 'LevelSelectView', 'Tween', 'TweenCSS'], function (BaseModel, Ajax, LevelSelectModel, LevelSelectView) {
         'use strict';
-        var ajax = new Ajax(), debugging = false, update, lsm = new LevelSelectModel(), lsv = LevelSelectView;
+        var ajax = new Ajax(), debugging = false, update, lsm = new LevelSelectModel(), lsv = LevelSelectView, tween;
         
         function BaseController () {            
             //Empty Constructor
@@ -22,8 +22,6 @@
                 if (typeof callback === 'function') {
                     callback(data);
                 }
-                //lsv.on.show(lsm.setData(data));
-                //console.log('UPDATING FROM BASE', this, 'VALUE OF data', data);
             },
             sendData: function (dataObject) {
                 //Send an object back to the model
@@ -31,7 +29,7 @@
             },
             destroy: function (elm, removeChildNodes) {
                 elm = typeof elm === 'string' ? document.getElementById(elm) : elm;
-                //console.log('VALUE OF removeChildNodes', removeChildNodes);
+                
                 if (removeChildNodes) {
                     while (elm.childNodes.length > 0) {
                         elm.removeChild(elm.childNodes[0]);
@@ -39,7 +37,25 @@
                 }else {
                     elm.parentNode.removeChild(elm);
                 }
+                elm = null;
+            },
+            animate: function (el, from, to, easing, time) {
+                //Animates page elements
+                var elm = typeof el === 'string' ? document.getElementById(el) : el;
                 
+                createjs.CSSPlugin.install(createjs.Tween);
+                elm.style.width = elm.parentNode.offsetWidth+'px';
+                
+                tween = new createjs.Tween.get(elm)
+                .wait(0)
+                .to(from)
+                .to(to, time, easing)
+                .call(this.handleComplete);
+                
+                createjs.Ticker.setFPS(60);
+                
+                tween = null;
+                elm = null;
             },
             test: function () {
                 //console.log('Inheritence check');
