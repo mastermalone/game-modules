@@ -2,7 +2,7 @@
     define(function(){
         'use strict';
         
-        if (Object.create !== 'function') {
+        if (typeof Object.create !== 'function') {
             Object.create = function(o){
                 var F = function(){
                     //Empty consturctor
