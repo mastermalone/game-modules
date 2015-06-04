@@ -19,6 +19,16 @@
                 }
                 
                 elm = typeof dispatchElement === 'string' ? elm = document.getElementById(dispatchElement) : dispatchElement;
+                
+                if (typeof elm.dispatchEvent !== 'function') {
+                    elm.dispatchEvent = function(e){
+                        var F = function(){
+                            //Empty consturctor
+                        };
+                        return new F();
+                    };
+                }
+                
                 elm.dispatchEvent(evt);
                 
                 console.log('Getting into  Dispatch', typeof elm, type, 'dispatcher name:', elm);
