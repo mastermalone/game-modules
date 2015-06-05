@@ -1,7 +1,11 @@
 (function () {
     define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'Dispatch', 'Events'], function (Subclass, BaseController, TrayModel, TrayView, Dispatch, Events) {
         'use strict';
-        var subclass = new Subclass(), tm = new TrayModel(), tv = TrayView, dsp = new Dispatch(), evts = new Events();
+        var subclass = new Subclass(), 
+            tm = new TrayModel(), 
+            tv = TrayView, 
+            dsp = new Dispatch(), 
+            evts = new Events();
         
         function TrayController () {
             this.level = 1;

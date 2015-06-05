@@ -2,17 +2,17 @@
     define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Events', 'CssTransitions', 'Dispatch', 'Tween', 'TweenCSS'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, CssTransitions, Dispatch) {
         'use strict';
         var subclass = new SubClass, 
-        ajax = new Ajax(), 
-        date = new Date(), 
-        evts = new Events(), 
-        mm = new ModalModel(), 
-        mv = ModalView, 
-        transitionEnd = CssTransitions.transitionEnd(), 
-        privateUpdate, 
-        lvlNum, 
-        targ, 
-        modal,
-        dsp;
+            ajax = new Ajax(), 
+            date = new Date(), 
+            evts = new Events(), 
+            mm = new ModalModel(), 
+            mv = ModalView, 
+            transitionEnd = CssTransitions.transitionEnd(), 
+            privateUpdate, 
+            lvlNum, 
+            targ, 
+            modal,
+            dsp;
         
         function ModalContoller () {
            privateUpdate = function (url) {

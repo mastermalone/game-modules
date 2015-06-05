@@ -6,7 +6,10 @@ define(function(){
     CreateNode.prototype = {
         constructor: CreateNode,
         makeElement: function (type, attr, attrVal, txt, addSpan) {
-            var el = document.createElement(type), span = document.createElement('SPAN'), txt;
+            var el = document.createElement(type), 
+            span = document.createElement('SPAN'), 
+            txt;
+            
             el.setAttribute(attr, attrVal);
             
             if(addSpan === true){

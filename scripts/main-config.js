@@ -23,7 +23,7 @@ require.config({
 		'Subclass': 'modules/Subclass',
 		'TrayController': 'controllers/TrayController',		
 		'TrayModel': 'models/TrayModel',
-		'TrayModule': 'components/TrayModule',
+		'TrayModule': 'ui-components/TrayModule',
 		'TrayView': 'views/TrayView',
 		'Tween': 'lib/tweenjs/tweenjs-0.6.0.min'
 	},

@@ -3,13 +3,13 @@
         'use strict';
         
         var update, 
-        subClass = new Subclass(), 
-        evts = new Events(), 
-        lsm = new LevelSelectModel(), 
-        lsv = LevelSelectView, 
-        dsp,
-        position = {},
-        target = {};
+            subClass = new Subclass(), 
+            evts = new Events(), 
+            lsm = new LevelSelectModel(), 
+            lsv = LevelSelectView, 
+            dsp,
+            position = {},
+            target = {};
 			
 		//var canvas = document.createElement('canvas');
         //var stage = new createjs.Stage(canvas); 
@@ -52,7 +52,9 @@
         
         LevelSelectController.prototype.fireEvents = function (e) {
             //Delegate events
-            var targ = window.addEventListener ? e.target : e.srcElement, isSelectBtn = (targ.id.indexOf('select-btn') !== -1);
+            var targ = window.addEventListener ? e.target : e.srcElement, 
+            isSelectBtn = (targ.id.indexOf('select-btn') !== -1);
+            
             console.log('Target: ', typeof targ.id, (targ.id.indexOf('select-btn') !== -1));
             switch (targ.id) {
                 case 'selector':

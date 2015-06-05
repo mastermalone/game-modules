@@ -1,7 +1,12 @@
 (function () {
     define(['BaseModel', 'Ajax', 'LevelSelectModel', 'LevelSelectView', 'Tween', 'TweenCSS'], function (BaseModel, Ajax, LevelSelectModel, LevelSelectView) {
         'use strict';
-        var ajax = new Ajax(), debugging = false, update, lsm = new LevelSelectModel(), lsv = LevelSelectView, tween;
+        var ajax = new Ajax(), 
+            debugging = false, 
+            update, 
+            lsm = new LevelSelectModel(), 
+            lsv = LevelSelectView, 
+            tween;
         
         function BaseController () {            
             //Empty Constructor
