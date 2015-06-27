@@ -5,17 +5,24 @@
             //Empty
         }
         Dispatch.prototype = {
-            customEvent: function (dispatchElement, type) {
+            customEvent: function (dispatchElement, type, data) {
                 var evt, elm;
                 //Example create event
                 //have some element listen for the event
                 //have some element dispatch the event afterward
                 
-                if (window.Event) {
-                    evt = new Event(type);
-                }else {
-                    evt =  document.createEvent('Event');
+                if (document.createEvent) {
+                    evt = document.createEvent('Event');
                     evt.initEvent(type, true, true);
+                }else {
+                    evt = document.createEventObject();
+                    evt.type = type;
+                }
+                
+                if (data && typeof data !== 'undefined') {
+                    evt.data = data;//Attach a data object to the property
+                }else {
+                    data = null;
                 }
                 
                 elm = typeof dispatchElement === 'string' ? elm = document.getElementById(dispatchElement) : dispatchElement;
