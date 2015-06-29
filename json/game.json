@@ -2,180 +2,66 @@
     "puzzle": {
         "level1": {
             "image": "https://abcmouse.com/artwork/some-image-level1.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600]
-            },
+            "pieces": 4,
+            "opacity": 1,
             "completed": false
         },
         "level2": {
             "image": "https://abcmouse.com/artwork/some-image-level2.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600]
-            },
+            "pieces": 8,
+            "opacity": 0.9,
             "completed": true
         },
         "level3": {
             "image": "https://abcmouse.com/artwork/some-image-level3.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600],
-                "7": [600, 600],
-                "8": [600, 600],
-                "9": [600, 600],
-                "10": [600, 600],
-                "11": [600, 600],
-                "12": [600, 600]
-            },        
+            "pieces": 12,     
+            "opacity": 0.8,
             "completed": false
         },
         "level4": {
             "image": "https://abcmouse.com/artwork/some-image-level4.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600],
-                "7": [600, 600],
-                "8": [600, 600],
-                "9": [600, 600],
-                "10": [600, 600],
-                "11": [600, 600],
-                "12": [600, 600]
-            },   
+            "pieces": 16,
+            "opacity": 0.7,
             "completed": true
         },
         "level5": {
             "image": "https://abcmouse.com/artwork/some-image-level5.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600],
-                "7": [600, 600],
-                "8": [600, 600],
-                "9": [600, 600],
-                "10": [600, 600],
-                "11": [600, 600],
-                "12": [600, 600]
-            },   
+            "pieces": 20,
+            "opacity": 0.6,
             "completed": false
         },
         "level6": {
             "image": "https://abcmouse.com/artwork/some-image-level6.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600],
-                "7": [600, 600],
-                "8": [600, 600],
-                "9": [600, 600],
-                "10": [600, 600],
-                "11": [600, 600],
-                "12": [600, 600]
-            },   
+            "pieces": 24,
+            "opacity": 0.5,
             "completed": true
         },
         "level7": {
             "image": "https://abcmouse.com/artwork/some-image-level7.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600],
-                "7": [600, 600],
-                "8": [600, 600],
-                "9": [600, 600],
-                "10": [600, 600],
-                "11": [600, 600],
-                "12": [600, 600]
-            },   
+            "pieces": 28,
+            "opacity": 0.4,
             "completed": true
         },
         "level8": {
             "image": "https://abcmouse.com/artwork/some-image-level8.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600],
-                "7": [600, 600],
-                "8": [600, 600],
-                "9": [600, 600],
-                "10": [600, 600],
-                "11": [600, 600],
-                "12": [600, 600]
-            },   
+            "pieces": 32,
+            "opacity": 0.3,
             "completed": true
         },
         "level9": {
-            "image": "https://abcmouse.com/artwork/some-image-level9.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600],
-                "7": [600, 600],
-                "8": [600, 600],
-                "9": [600, 600],
-                "10": [600, 600],
-                "11": [600, 600],
-                "12": [600, 600]
-            },   
-            "completed": true
+			"image": "https://abcmouse.com/artwork/some-image-level9.png",
+			"pieces": 36,
+			"opacity": 0.2,
+			"completed": true
         },
         "level10": {
             "image": "https://abcmouse.com/artwork/some-image-level10.png",
-            "coordinates": {
-                "0": [0, 300],
-                "1": [300, 600],
-                "2": [300, 300],
-                "3": [600, 600],
-                "4": [600, 600],
-                "5": [600, 600],
-                "6": [600, 600],
-                "7": [600, 600],
-                "8": [600, 600],
-                "9": [600, 600],
-                "10": [600, 600],
-                "11": [600, 600],
-                "12": [600, 600]
-            },   
+            "pieces": 40,
+            "opacity": 0.1,
             "completed": false
         }
     },
+    "image": "../../game-modules/public/images/butterfly.jpg",
     "modal": {
         "header": "Level",
         "subHeader": "Is this the level you want to play?",
