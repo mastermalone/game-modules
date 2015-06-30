@@ -1,43 +1,55 @@
 (function () {
-    'use strict';
-    define(function (data, curvePoints) {
+    define(['Events'], function (Events) {
+        'use strict';
         
-        var parent,
-            img,
-            canvas,
-            ctx;
-        
-        function Jigsaw () {
+        function Jigsaw (data) {
             this.data = data;
-            this.curvePoints = curvePoints;            
+            this.level = 1;      
         }
         
         Jigsaw.prototype = {
             constructor: Jigsaw,
-            init: function (data) {
-                //Set up the defualts
-                console.log('Setting up the JIGSAW PIECES!!');
-                this.createPieces(data);
+            init: function () {
+                //Set up the defualts                
+                var evt = new Events();
+                evt.addEvent(window, ['setLevel'], this.getLevel.bind(this));
+                evt.addEvent(window, ['imagesize'], this.createPieces.bind(this));
             },
-            createPieces: function (data) {
+            createPieces: function (e) {
                 //Do the slicing  
                 //Use the curvePoints Object that gets passed in.
-                var numPieces = data.puzzle['level1'].pieces, width;
+                console.log('Getting the call!!', e.data);
+                var numPieces = this.data.puzzle['level'+this.level].pieces,
+                    frag = document.createDocumentFragment(), 
+                    width,
+                    height, 
+                    canvas, 
+                    ctx, 
+                    img, 
+                    evt;
+                
                 img = document.createElement('img');
-                img.src = data.image;
-                // width = img.offsetWidth /
-                console.log('Number of pieces', data.image);
+                img.src = this.data.image;
+                console.log('Number of pieces', this.data.image, this.data);
                 console.log('Number of ', numPieces);
 
                 img.onload = function () {
                     for (var i = 0; i < numPieces; i++) {
+                        canvas = document.createElement('canvas');
+                        ctx = canvas.getContext('2d');
+                        
+                        ctx.save();
+                        //ctx.bezierCurveTo(20,100,200,100,200,20); Create besier curve based on random and only from the right until the last image from the ight is made
+                        ctx.drawImage(img, 0, 0);
                         //DO stuff
                         console.log('Value of i:', i);
                     }
-                    canvas = document.createElement('canvas');
-                    ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
+                   
                 };
+            },
+            getLevel: function (e) {
+                this.level = e.target.id.substring(10, parseInt(e.target.id.length));
+                console.log("GETTING THE LEVEL TARGET NUMBER:", this.level);
             },
             appendTo: function (el) {
                 var parent = typeof el === 'string' ? document.getElementById(el) : el;

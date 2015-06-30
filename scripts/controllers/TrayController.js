@@ -25,12 +25,9 @@
         TrayController.prototype.fireEvents = function (e) {
             var targ = window.addEventListener ? e.target : e.srcElement;
             
-            switch (targ.id) {
-                case 'level-selector':
+            switch (targ.getAttribute('data')) {
+                case 'lv-sel':                
                 dsp.customEvent('level-selector', 'levelSelect');
-                break;
-                case 'level-indicator':
-                //Do stuff ..maybe
                 break;
             }
         }.bind(TrayController.prototype);
@@ -45,8 +42,6 @@
             var lInd = document.getElementById('level-indicator');
             lInd.innerHTML = this.level;
             this.level >= 10 ? lInd.className = 'tens' : lInd.className = '';
-            
-            
             
         }.bind(TrayController.prototype);
         
