@@ -56,7 +56,7 @@
                         }
                         
                         //Create an object {} that stores the values of the image background position for each puzzle piece.  In this loop, I can reference that object and set each piece there.
-                        if (((canvas.height *i) - (canvas.height)) >= e.data.height) {
+                        if (((canvas.height * i) - (canvas.height)) >= e.data.height) {
                             //imgXValue += canvas.width;
                             console.log('Greater than or equal to height:', ((canvas.height *i) - (canvas.height)), 'Total height:',  e.data.height, imgXValue);
                             //imgXValue = 0;
@@ -71,7 +71,7 @@
                         }*/
                         //DO stuff
                         console.log('Value of width:', canvas.width, 'Height:', canvas.height);
-                        frag.appendChild(canvas);
+                        //frag.appendChild(canvas);
                     }
                     this.appendTo('main', frag);
                    

@@ -1,7 +1,7 @@
 (function () {
-    define(['LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax'], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax) {
+    define(['LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax', 'Emitter',  'Easel'], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax, Emitter) {
         'use strict';
-        var ajax = new Ajax(); 
+        
         var App = {
             setAPIURL: function (url) {
                 return {
@@ -14,9 +14,10 @@
                     return;
                 }
                 var lvc = new LevelSelectController(), 
-                mc = new ModalController(), 
-                tc = new TrayController(),
-                gbc = new GameBoardController();
+                    mc = new ModalController(), 
+                    tc = new TrayController(),
+                    gbc = new GameBoardController(),
+                    ajax = new Ajax();
                 
                 //Private Ajax Request.  Any modules that need data from the API should called here
                 (function () {
@@ -34,7 +35,12 @@
                 var date = new Date(); //NEW
                 //Kick off the App
                 this.update(url+'?a='+date.getTime());
-                console.log('Initting the app');
+                //console.log('Initting the app', Easel);
+                var lc = new LevelSelectController();
+                var emitter = new Emitter(this);
+                emitter.dispatch('testevent');
+                emitter.dispatch('bustthisstuff');
+                console.log('VALUE OF APP:', this);
             }
         };
         return App;
