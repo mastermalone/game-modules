@@ -1,10 +1,11 @@
 (function () {
-    define(['Events'], function (Events) {
+    define(['Events', 'jquery-ui'], function (Events) {
         'use strict';
         
         function Jigsaw (data) {
             this.data = data;
-            this.level = 1;      
+            this.level = 1;  
+            this.imageMap = {};    
         }
         
         Jigsaw.prototype = {
@@ -39,17 +40,23 @@
                     for (var i = 0; i < numPieces; i++) {
                         canvas = document.createElement('canvas');
                         canvas.className = 'jigsaw-piece';
-                        canvas.width = (e.data.width/numPieces)*2;
-                        canvas.height = (e.data.height/numPieces)*2;
+                        canvas.id = 'jigsaw-'+i;
+                        //canvas.width = (Math.ceil(e.data.width)/numPieces)*(2);
+                        canvas.width = (Math.ceil(e.data.width)/numPieces)*((2));
+                        //canvas.height = (Math.ceil(e.data.height)/numPieces)*(2);
+                        canvas.height = (Math.ceil(e.data.height)/numPieces)*((2));
                         canvas.style.border = 'solid 1px #ff0000';
                         ctx = canvas.getContext('2d');
                         
+                        
+                        console.log('VALUE OF WIDTH:', Math.ceil(e.data.width)-((numPieces/100)*1000), 'VALUE OF HEIGHT:', Math.ceil(e.data.height)/numPieces);
                         ctx.save();
                         ctx.bezierCurveTo(20,100,200,100,200,20);// Create besier curve based on random and only from the right until the last image from the ight is made
                         //ctx.drawImage(img, , (e.data.height) * i, e.data.width, e.data.height);
                         imgXValue = (canvas.width) * i;
                         
-                        if (((canvas.width *i) - (canvas.width)) >= e.data.width) {
+                        //If the width of one row of puzzle peices is greater than or equal to the total witdh of the image, increase the Y value by one puzzle piece height
+                        if (((canvas.width * i) - (canvas.width)) >= e.data.width) {
                             imgYValue += canvas.height;
                             console.log('Greater than or equal to width:', ((canvas.width *i) - (canvas.width)), 'Total Width:',  e.data.width, imgYValue);
                             //imgXValue = 0;
@@ -62,22 +69,33 @@
                             //imgXValue = 0;
                         }
                         
-                        
                         ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
-                        
                         
                         /*for (var j = i; i < imgXValue; j++) {
                             //ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
                         }*/
-                        //DO stuff
+                        
                         console.log('Value of width:', canvas.width, 'Height:', canvas.height);
-                        //frag.appendChild(canvas);
+                        frag.appendChild(canvas);
                     }
                     this.appendTo('main', frag);
+                    
+                    $('.jigsaw-piece').draggable({
+                        containment:'.main-wrap',
+                        cursor: 'move',
+                        snap: '#content',
+                        //revert: 'invalid'//flies back to original position
+                    });
                    
                 }.bind(this);
             },
-            
+            createImageMap: function () {
+                //Run this for loop to create the image map for the puzzle pieces.  
+                
+                for (var i = 0; i > itteration; i++) {
+                    
+                }
+            },
             getLevel: function (e) {
                 this.level = e.target.id.substring(10, parseInt(e.target.id.length));
                 console.log("GETTING THE LEVEL TARGET NUMBER:", this.level);
