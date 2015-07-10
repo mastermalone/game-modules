@@ -22,7 +22,7 @@
                 console.log('Getting the call!!', e.data);
                 var numPieces = this.data.puzzle['level'+this.level].pieces,
                     rows = Math.floor(Math.sqrt(numPieces)),//Horizontal
-                    columns = ((numPieces)/Math.floor(Math.sqrt(numPieces))),//Vertical
+                    columns = Math.ceil(((numPieces)/Math.floor(Math.sqrt(numPieces)))),//Vertical Runded up to prevent uneven grids
                     frag = document.createDocumentFragment(), 
                     width,
                     height,
@@ -51,33 +51,22 @@
                         
                         ctx.save();
                         ctx.bezierCurveTo(20,100,200,100,200,20);// Create besier curve based on random and only from the right until the last image from the ight is made
-                        //ctx.drawImage(img, , (e.data.height) * i, e.data.width, e.data.height);
-                        imgXValue = (piece.width) * i;
-                        
-                        //If the width of one row of puzzle peices is greater than or equal to the total witdh of the image, increase the Y value by one puzzle piece height
-                        if (((piece.width * i) - (piece.width)) >= e.data.width) {
-                            imgYValue += piece.height;
-                            console.log('Greater than or equal to width:', ((piece.width *i) - (piece.width)), 'Total Width:',  e.data.width, imgYValue);
-                            imgXValue = 0;
-                        }
-                        
-                        //Create an object {} that stores the values of the image background position for each puzzle piece.  In this loop, I can reference that object and set each piece there.
-                        if (((piece.height * i) - (piece.height)) >= e.data.height) {
-                            imgXValue += piece.width;
-                            console.log('Greater than or equal to height:', ((piece.height *i) - (piece.height)), 'Total height:',  e.data.height, imgXValue);
-                            imgXValue = 0;
-                        }
                         
                         piece.style.left = imgXValue+'px';//Temp
-                        
                         piece.style.top = imgYValue+'px';//Temp
+                        
+                        console.log('HERE IS THE X VALUE:', imgXValue);
                         ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
+                        imgXValue += (piece.width);
                         
-                        /*for (var j = i; i < imgXValue; j++) {
-                            //ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
-                        }*/
+                        //If the width of one row of puzzle peices is greater than or equal to the total witdh of the image minus one puzzle piece, increase the Y value by one puzzle piece height
+                        if ((imgXValue - (piece.width-piece.width)) >= (e.data.width -10)) {
+                            imgYValue += piece.height;
+                            console.log('Greater than or equal to width:', 'X Position:',(imgXValue - piece.width), 'Total Width:',  e.data.width, 'Y Position', imgYValue);
+                            imgXValue = 0;
+                        }
                         
-                        console.log('Value of width:', piece.width, 'Height:', piece.height, "Rows", rows, 'Columns', columns);
+                        console.log('Value of width:', piece.width, 'Height:', piece.height, "Rows", rows, 'Columns', columns, 'X Position value:', imgXValue);
                         frag.appendChild(piece);
                     }
                     this.appendTo('main', frag);

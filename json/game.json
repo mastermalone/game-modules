@@ -2,7 +2,7 @@
     "puzzle": {
         "level1": {
             "image": "https://abcmouse.com/artwork/some-image-level1.png",
-            "pieces": 100,
+            "pieces": 12,
             "opacity": 1,
             "completed": false
         },
