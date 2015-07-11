@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "vue": "~0.12.1",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "eventemitter2": "~0.4.14"
   }
 }

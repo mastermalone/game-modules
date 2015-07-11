@@ -52,10 +52,12 @@
                         ctx.save();
                         ctx.bezierCurveTo(20,100,200,100,200,20);// Create besier curve based on random and only from the right until the last image from the ight is made
                         
+                        //Use this to create the map that will be used for the guide and the preview for the puzzel.
                         piece.style.left = imgXValue+'px';//Temp
                         piece.style.top = imgYValue+'px';//Temp
                         
                         console.log('HERE IS THE X VALUE:', imgXValue);
+                        //Subtract the imgXvalue to move the background position along accorning to the next piece that needs to be painted with a section of the image
                         ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
                         imgXValue += (piece.width);
                         

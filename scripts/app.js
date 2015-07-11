@@ -1,5 +1,5 @@
 (function () {
-    define(['LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax', 'Emitter',  'Easel'], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax, Emitter) {
+    define(['LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax', 'Emitter', 'Easel'], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax, Emitter) {
         'use strict';
         
         var App = {
@@ -33,14 +33,11 @@
             },
             init: function (url) {
                 var date = new Date(); //NEW
+                
+                var lvc = new LevelSelectController(); 
+                var emitter = new Emitter(lvc);
                 //Kick off the App
                 this.update(url+'?a='+date.getTime());
-                //console.log('Initting the app', Easel);
-                var lc = new LevelSelectController();
-                var emitter = new Emitter(this);
-                emitter.dispatch('testevent');
-                emitter.dispatch('bustthisstuff');
-                console.log('VALUE OF APP:', this);
             }
         };
         return App;
