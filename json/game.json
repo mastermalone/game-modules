@@ -4,31 +4,36 @@
             "image": "https://abcmouse.com/artwork/some-image-level1.png",
             "pieces": 4,
             "opacity": 1,
-            "completed": false
+            "completed": false,
+            "distance": 100
         },
         "level2": {
             "image": "https://abcmouse.com/artwork/some-image-level2.png",
             "pieces": 8,
             "opacity": 0.9,
-            "completed": true
+            "completed": true,
+            "distance": 90
         },
         "level3": {
             "image": "https://abcmouse.com/artwork/some-image-level3.png",
             "pieces": 16,     
             "opacity": 0.8,
-            "completed": false
+            "completed": false,
+            "distance": 80
         },
         "level4": {
             "image": "https://abcmouse.com/artwork/some-image-level4.png",
             "pieces": 16,
             "opacity": 0.7,
-            "completed": true
+            "completed": true,
+            "distance": 70
         },
         "level5": {
             "image": "https://abcmouse.com/artwork/some-image-level5.png",
             "pieces": 20,
             "opacity": 0.6,
-            "completed": false
+            "completed": false,
+            "distance": 60
         },
         "level6": {
             "image": "https://abcmouse.com/artwork/some-image-level6.png",
@@ -40,25 +45,29 @@
             "image": "https://abcmouse.com/artwork/some-image-level7.png",
             "pieces": 28,
             "opacity": 0.4,
-            "completed": true
+            "completed": true,
+            "distance": 50
         },
         "level8": {
             "image": "https://abcmouse.com/artwork/some-image-level8.png",
             "pieces": 32,
             "opacity": 0.3,
-            "completed": true
+            "completed": true,
+            "distance": 40
         },
         "level9": {
 			"image": "https://abcmouse.com/artwork/some-image-level9.png",
 			"pieces": 36,
 			"opacity": 0.2,
-			"completed": true
+			"completed": true,
+			"distance": 20
         },
         "level10": {
             "image": "https://abcmouse.com/artwork/some-image-level10.png",
             "pieces": 40,
             "opacity": 0.1,
-            "completed": false
+            "completed": false,
+            "distance": 5
         }
     },
     "image": "../../game-modules/public/images/butterfly.jpg",

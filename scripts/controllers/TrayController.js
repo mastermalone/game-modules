@@ -1,22 +1,22 @@
 (function () {
     define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'Dispatch', 'Events'], function (Subclass, BaseController, TrayModel, TrayView, Dispatch, Events) {
         'use strict';
-        var subclass = new Subclass(), 
-            tm = new TrayModel(), 
-            tv = TrayView, 
-            dsp = new Dispatch(), 
-            evts = new Events();
+        var subclass = new Subclass(),
+            dsp = new Dispatch();
         
         function TrayController () {
             this.level = 1;
+            this.view = TrayView;
+            this.model = new TrayModel();
             BaseController.call(this);
         }
         
         subclass.extend(TrayController, BaseController);
         
         TrayController.prototype.init = function (data) {
+            var evts = new Events();
             //This controller listens the level changes and controls the puzzle pieces
-            tv.on.show(tm.setData(data));//Do the level select on.show() with an evt.addListener();  displatch event rom here with level select dispatch event
+            this.view.on.show(this.model.setData(data));//Do the level select on.show() with an evt.addListener();  displatch event rom here with level select dispatch event
             evts.addEvent('tray', ['mousedown'], this.fireEvents);
             evts.addEvent(window, ['setLevel'], this.setLevel);
             evts.addEvent(window, ['levelChangeConfirmation'], this.confirmedLevelChange);
@@ -28,6 +28,9 @@
             switch (targ.getAttribute('data')) {
                 case 'lv-sel':                
                 dsp.customEvent('level-selector', 'levelSelect');
+                break;
+                case 'jigsaw-piece':
+                console.log('mousing down on puzzle piece');
                 break;
             }
         }.bind(TrayController.prototype);
