@@ -8,6 +8,9 @@
                 show: function (data, lvl) {
                     //Send data to modal module
                     tm.render(data, lvl);
+                },
+                getState: function (state) {
+                    return state;
                 }
             }
         };

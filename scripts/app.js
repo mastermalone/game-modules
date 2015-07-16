@@ -32,10 +32,10 @@
                 }());
             },
             init: function (url) {
-                var date = new Date(); //NEW
-                
-                var lvc = new LevelSelectController(); 
-                var emitter = new Emitter(lvc);
+                var date = new Date(),
+                    lvc = new LevelSelectController(),
+                    emitter = new Emitter(lvc);
+                    
                 //Kick off the App
                 this.update(url+'?a='+date.getTime());
             }

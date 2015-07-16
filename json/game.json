@@ -1,73 +1,64 @@
 {
     "puzzle": {
         "level1": {
-            "image": "https://abcmouse.com/artwork/some-image-level1.png",
-            "pieces": 4,
-            "opacity": 1,
+            "pieces": 24,
+            "opacity": 0.4,
             "completed": false,
             "distance": 100
         },
         "level2": {
-            "image": "https://abcmouse.com/artwork/some-image-level2.png",
-            "pieces": 8,
-            "opacity": 0.9,
+            "pieces": 4,
+            "opacity": 0.4,
             "completed": true,
             "distance": 90
         },
         "level3": {
-            "image": "https://abcmouse.com/artwork/some-image-level3.png",
-            "pieces": 16,     
-            "opacity": 0.8,
-            "completed": false,
-            "distance": 80
-        },
-        "level4": {
-            "image": "https://abcmouse.com/artwork/some-image-level4.png",
-            "pieces": 16,
-            "opacity": 0.7,
-            "completed": true,
-            "distance": 70
-        },
-        "level5": {
-            "image": "https://abcmouse.com/artwork/some-image-level5.png",
-            "pieces": 20,
-            "opacity": 0.6,
-            "completed": false,
-            "distance": 60
-        },
-        "level6": {
-            "image": "https://abcmouse.com/artwork/some-image-level6.png",
-            "pieces": 24,
+            "pieces": 6,     
             "opacity": 0.5,
-            "completed": true
-        },
-        "level7": {
-            "image": "https://abcmouse.com/artwork/some-image-level7.png",
-            "pieces": 28,
-            "opacity": 0.4,
-            "completed": true,
+            "completed": false,
             "distance": 50
         },
-        "level8": {
-            "image": "https://abcmouse.com/artwork/some-image-level8.png",
-            "pieces": 32,
-            "opacity": 0.3,
+        "level4": {
+            "pieces": 9,
+            "opacity": 0.6,
             "completed": true,
-            "distance": 40
+            "distance": 75
+        },
+        "level5": {
+            "pieces": 12,
+            "opacity": 0.6,
+            "completed": false,
+            "distance": 75
+        },
+        "level6": {
+            "pieces": 15,
+            "opacity": 0.7,
+            "completed": true,
+            "distance": 75
+        },
+        "level7": {
+            "pieces": 20,
+            "opacity": 0.8,
+            "completed": true,
+            "distance": 80
+        },
+        "level8": {
+            "pieces": 24,
+            "opacity": 0.9,
+            "completed": true,
+            "distance": 85
         },
         "level9": {
-			"image": "https://abcmouse.com/artwork/some-image-level9.png",
-			"pieces": 36,
-			"opacity": 0.2,
+			"pieces": 24,
+			"opacity": 0.9,
 			"completed": true,
-			"distance": 20
+			"distance": 90
         },
         "level10": {
-            "image": "https://abcmouse.com/artwork/some-image-level10.png",
-            "pieces": 40,
-            "opacity": 0.1,
+            "pieces": 24,
+            "opacity": 0,
             "completed": false,
-            "distance": 5
+            "distance": 95
         }
     },
     "image": "../../game-modules/public/images/butterfly.jpg",

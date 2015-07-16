@@ -35,7 +35,7 @@
             }
         }.bind(TrayController.prototype);
         
-         TrayController.prototype.setLevel = function (e) {
+        TrayController.prototype.setLevel = function (e) {
              //This gets set all the time, but will only be used when a level change is confirmed.
              this.level = e.target.id.substring(10, parseInt(e.target.id.length));
         }.bind(TrayController.prototype);
@@ -47,6 +47,12 @@
             this.level >= 10 ? lInd.className = 'tens' : lInd.className = '';
             
         }.bind(TrayController.prototype);
+        
+        TrayController.prototype.alignPieces = function (pieces) {
+            if (this) {
+                console.log('The container has child elements');
+            }
+        };
         
         return TrayController;
     });

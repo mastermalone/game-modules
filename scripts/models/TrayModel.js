@@ -5,12 +5,15 @@
         
         function TrayModel () {
             //Empty Constructor
-            this.data = "";
             BaseModel.call(this);
         }
         
         subClass.extend(TrayModel, BaseModel);
         //Add more methods to prototype if needed
+        
+        TrayModel.prototype.state = function (state) {
+            return state;
+        };
         
         return TrayModel;
     });
