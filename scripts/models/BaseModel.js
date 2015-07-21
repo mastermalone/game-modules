@@ -10,14 +10,9 @@
                 console.log("Returning data from base", this);
                 return data;
             },
-            postData: function (url, debugging) {
-                console.log("Post Data Here");
-                if(debugging === true){
-                    if(!url || typeof url !== "string"){
-                        console.log("BaseModel: You did not specify the url, or it's type is not a string");
-                        return;
-                    }
-                }
+            getState: function (state) {
+                console.log('State:', state);
+                return state;
             }
         };
         return BaseModel;

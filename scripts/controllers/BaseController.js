@@ -3,9 +3,7 @@
         'use strict';
         var ajax = new Ajax(), 
             debugging = false, 
-            update, 
-            lsm = new LevelSelectModel(), 
-            lsv = LevelSelectView, 
+            update,
             tween;
         
         function BaseController () {            

@@ -1,5 +1,5 @@
 (function () {
-    define(['LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax', 'Emitter', 'Easel'], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax, Emitter) {
+    define(['LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax', 'Emitter'], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax, Emitter) {
         'use strict';
         
         var App = {
