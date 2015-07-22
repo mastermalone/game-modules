@@ -67,7 +67,7 @@
                             this.imageMap['image'+i+'Y'] = imgYValue;*/
                            
                             //X and Y coordinates for tray placement
-                            widthStr = window.getComputedStyle(document.getElementById(this.parent)).width;
+                            widthStr = window.getComputedStyle(document.querySelector(this.parent)).width;
                             parentWidth = parseFloat(widthStr.substring(0, widthStr.length-2));
                             //piece.style.left = (parentWidth/2)+'px';
                            
@@ -117,7 +117,8 @@
                 console.log("GETTING THE LEVEL TARGET NUMBER:", this.level);
             },
             appendTo: function (el, child) {
-                var parent = typeof el === 'string' ? document.getElementById(el) : el;
+                //var parent = typeof el === 'string' ? document.getElementById(el) : el;
+                var parent = typeof el === 'string' ? document.querySelector(el) : el;
                 parent.appendChild(child);
             }
         };
