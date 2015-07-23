@@ -1,5 +1,5 @@
 (function () {
-    define(['LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax', 'Emitter'], function (LevelSelectController, ModalController, TrayController, GameBoardController, Ajax, Emitter) {
+    define(['BaseModel', 'LevelSelectController', 'ModalController', 'TrayController', 'GameBoardController', 'Ajax', 'Emitter'], function (BaseModel, LevelSelectController, ModalController, TrayController, GameBoardController, Ajax, Emitter) {
         'use strict';
         
         var App = {
@@ -13,21 +13,23 @@
                     console.log('app.js:  You did not provide a URL or, the type of argument you passed in is not a string.');
                     return;
                 }
-                var lvc = new LevelSelectController(), 
+                var baseModel = new BaseModel(),
+                    lvc = new LevelSelectController(), 
                     mc = new ModalController(), 
                     tc = new TrayController(),
                     gbc = new GameBoardController(),
                     ajax = new Ajax();
                 
-                //Private Ajax Request.  Any modules that need data from the API should called here
+                //Add Data to model
                 (function () {
                     ajax.getData(url, function (data) {
                         /*Pass in the data from this call to the controllers.  
                         This is the intial call that gets data into the models and subsequently, to the views */
-                        gbc.init(data);//Set up the gameboard
-                        lvc.init(data);//Set up the level select
-                        tc.init(data); //Set up the tray that contains the dragable objects 
-                        mc.init(data);// Set up Modal Module 
+                        baseModel.setData(data);
+                        gbc.init(baseModel.setData(data));//Set up the gameboard
+                        lvc.init(baseModel.setData(data));//Set up the level select
+                        tc.init(baseModel.setData(data)); //Set up the tray that contains the dragable objects 
+                        mc.init(baseModel.setData(data));// Set up Modal Module 
                     });
                 }());
             },

@@ -1,20 +1,17 @@
 (function () {
-    define(['BaseModel', 'Ajax', 'LevelSelectModel', 'LevelSelectView', 'Tween', 'TweenCSS'], function (BaseModel, Ajax, LevelSelectModel, LevelSelectView) {
+    define(['BaseModel', 'LevelSelectModel', 'LevelSelectView', 'Tween', 'TweenCSS'], function (BaseModel, LevelSelectModel, LevelSelectView) {
         'use strict';
-        var ajax = new Ajax(), 
-            debugging = false, 
-            update,
-            tween;
         
-        function BaseController () {            
-            //Empty Constructor
+        function BaseController () {    
+            this.debugging = false;
+            this.tween = '';
         }
         
         BaseController.prototype = {
             constructor: BaseController,
             updateModel: function (data, callback) {
                 //Receives data from the App.init() call.  This method is called from the controller that is inheriting from this BaseContoller object.
-                if(debugging === true){
+                if(this.debugging === true){
                     if(!data || typeof data !== 'string'){
                         console.log('BaseController: You did not pass the data into this method.');
                         return;
@@ -49,7 +46,7 @@
                 createjs.CSSPlugin.install(createjs.Tween);
                 elm.style.width = elm.parentNode.offsetWidth+'px';
                 
-                tween = new createjs.Tween.get(elm)
+                this.tween = new createjs.Tween.get(elm)
                 .wait(0)
                 .to(from)
                 .to(to, time, easing)
@@ -57,11 +54,8 @@
                 
                 createjs.Ticker.setFPS(60);
                 
-                tween = null;
+                this.tween = null;
                 elm = null;
-            },
-            test: function () {
-                //console.log('Inheritence check');
             }
         };
         

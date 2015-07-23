@@ -62,6 +62,7 @@
                             
                             //Use this to create the map that will be used for the guide and the preview for the puzzle.
                             /* piece.style.left = imgXValue+'px';//Temp
+                            //This creates a grid
                             piece.style.top = imgYValue+'px';//Temp
                             this.imageMap['image'+i+'X'] = imgXValue;
                             this.imageMap['image'+i+'Y'] = imgYValue;*/
@@ -74,7 +75,7 @@
                             console.log ('PARENT width:', parentWidth);
                             
                             console.log('HERE IS THE X VALUE:', imgXValue);
-                            //Subtract the imgXvalue to move the background position along accorning to the next piece that needs to be painted with a section of the image
+                            //Subtract the imgXvalue to move the background position along according to the next piece that needs to be painted with a section of the image
                             ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
                             imgXValue += (piece.width);
                                                     
