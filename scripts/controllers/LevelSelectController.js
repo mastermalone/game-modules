@@ -20,6 +20,7 @@
         subClass.extend(LevelSelectController, BaseController);
         
         LevelSelectController.prototype.init = function (data) {
+            console.log('WHATS MY DATA?:', this.data);
             //Listenes for 'levelSelect' event to call the create the level select
             this.evts = new Events();
             this.evts.addEvent(window, ['levelSelect'], function (e) {

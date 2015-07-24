@@ -60,23 +60,18 @@
                             ctx.save();
                             ctx.bezierCurveTo(20,100,200,100,200,20);// Create besier curve based on random and only from the right until the last image from the ight is made
                             
-                            //Use this to create the map that will be used for the guide and the preview for the puzzle.
-                            /* piece.style.left = imgXValue+'px';//Temp
-                            //This creates a grid
-                            piece.style.top = imgYValue+'px';//Temp
-                            this.imageMap['image'+i+'X'] = imgXValue;
-                            this.imageMap['image'+i+'Y'] = imgYValue;*/
-                           
+                            //Create image map grid
+                            this.createImageMap(i, imgXValue, imgYValue);
+                            
                             //X and Y coordinates for tray placement
+                            piece.style.top += ((piece.height+10)*i)+'px';
+                            piece.style.left = 10+'px';
                             widthStr = window.getComputedStyle(document.querySelector(this.parent)).width;
                             parentWidth = parseFloat(widthStr.substring(0, widthStr.length-2));
-                            //piece.style.left = (parentWidth/2)+'px';
-                           
-                            console.log ('PARENT width:', parentWidth);
                             
-                            console.log('HERE IS THE X VALUE:', imgXValue);
                             //Subtract the imgXvalue to move the background position along according to the next piece that needs to be painted with a section of the image
                             ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
+                            
                             imgXValue += (piece.width);
                                                     
                             //If the width of one row of puzzle peices is greater than or equal to the total witdh of the image minus one puzzle piece, increase the Y value by one puzzle piece height
@@ -89,29 +84,26 @@
                             console.log('Value of width:', piece.width, 'Height:', piece.height, "Rows", rows, 'Columns', columns, 'X Position value:', imgXValue);
                             frag.appendChild(piece);
                         }
-                        //this.appendTo('main', frag);
-                        this.appendTo(this.parent, frag);
                         
-                        //console.log('THE MAP', this.imageMap);
+                        this.appendTo(this.parent, frag);
                         
                         $('.jigsaw-piece').draggable({
                             containment:'.main-wrap',
                             stack: 'canvas',//Forcess Z-index to top for current clicked canvas
                             distance: 0,
                             cursor: 'move',
-                            snap: '#content'
-                            //revert: 'invalid'//flies back to original position
+                            snap: '#content',
+                            revert: 'invalid'//flies back to original position
                         });
                        
                     }.bind(this);
                 }
             },
-            createImageMap: function () {
-                //Run this for loop to create the image map for the puzzle pieces.  
-                
-                for (var i = 0; i > itteration; i++) {
-                    
-                }
+            createImageMap: function (itterator, xValue, yValue) {
+                //Use this to create the map that will be used for the guide and the preview for the puzzle.
+                //This creates a grid
+                this.imageMap['image'+itterator+'X'] = xValue;
+                this.imageMap['image'+itterator+'Y'] = yValue;
             },
             getLevel: function (e) {
                 this.level = e.target.id.substring(10, parseInt(e.target.id.length));
@@ -126,5 +118,4 @@
         
         return Jigsaw;
     });
-    
 }());

@@ -1,7 +1,7 @@
 {
     "puzzle": {
         "level1": {
-            "pieces": 50,
+            "pieces": 24,
             "opacity": 0.4,
             "completed": false,
             "distance": 100

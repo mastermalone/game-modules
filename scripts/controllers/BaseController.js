@@ -5,10 +5,14 @@
         function BaseController () {    
             this.debugging = false;
             this.tween = '';
+            this.model = new BaseModel();
         }
         
         BaseController.prototype = {
             constructor: BaseController,
+            data: function (data) {
+                return data;
+            },
             updateModel: function (data, callback) {
                 //Receives data from the App.init() call.  This method is called from the controller that is inheriting from this BaseContoller object.
                 if(this.debugging === true){
