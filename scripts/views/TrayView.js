@@ -9,6 +9,10 @@
                     //Send data to modal module
                     tm.render(data, lvl);
                 }
+            },
+            setLevel: function (data, level) {
+                tm.update(data, level);
+                console.log('Calling tray MODULE');
             }
         };
         

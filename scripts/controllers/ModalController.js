@@ -18,7 +18,7 @@
            this.dsp = '';
            this.transitionEnd = '';
            this.mv = '';
-           this.mm = new ModalModel();
+           this.mm = '';
            
            BaseController.call(this);
         }
@@ -38,7 +38,10 @@
         
         ModalContoller.prototype.showModal = function (data, lvl) {
             this.mv = ModalView;
-            this.mv.on.show(data, lvl);
+            this.mv.on.show(data, lvl);            
+            //this.mm = new ModalModel();
+            //this.mm.getState('modal-open');
+            console.log('MODAL MODEL', this.mm);
             this.mv = null;
         }.bind(ModalContoller.prototype);
         
@@ -80,13 +83,13 @@
             this.dsp = null;
             this.transitionEnd = null;
             this.evts = null;
-            this.destroy(targ.id);
+            this.destroy('#'+targ.id);
         }.bind(ModalContoller.prototype);
         
         ModalContoller.prototype.changeLevel = function () {
             //Use this.lvlNum to send the number of the level to the API or whatever means to change the current level
             this.dsp = new Dispatch();
-            this.dsp.customEvent(this.targ.id, 'levelChangeConfirmation');
+            this.dsp.customEvent(this.targ.id, 'levelChangeConfirmation', {level:this.lvlNum});
             this.dsp = null;
         };
         

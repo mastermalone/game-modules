@@ -5,7 +5,7 @@
         var subClass = new Subclass();
 		
         function LevelSelectController () {
-            this.retracted = false;
+            this.retracted = true;
             this.evts = ''; 
             this.lsm = ''; 
             this.lsv = '';
@@ -20,7 +20,6 @@
         subClass.extend(LevelSelectController, BaseController);
         
         LevelSelectController.prototype.init = function (data) {
-            console.log('WHATS MY DATA?:', this.data);
             //Listenes for 'levelSelect' event to call the create the level select
             this.evts = new Events();
             this.evts.addEvent(window, ['levelSelect'], function (e) {
@@ -37,6 +36,9 @@
             this.lsv.on.show(data);
             this.lsm = new LevelSelectModel();
             this.lsm.getState('level Select Open');
+            
+            this.lsm.userStats.user = 'Mike';
+            console.log('WHATS MY DATA?:', this.lsm.postData);
                         
             ls = document.getElementById('level-select');
             ls.style.left = ls.parentNode.offsetWidth+'px';
@@ -89,6 +91,7 @@
         LevelSelectController.prototype.handleComplete = function () {
             var ls = document.getElementById('level-select');
             if (this.retracted) {
+                this.lsm.getState('playing');
                 this.evts.removeEvent('level-select', ['mousedown'], this.fireEvents);
                 this.evts.removeEvent(window, ['retract'], this.retract);
                 this.evts = null;
@@ -99,6 +102,7 @@
                 this.targetPosition = null;
                 
                 ls.parentNode.removeChild(ls);
+                
             }
             ls = null;
         }.bind(LevelSelectController.prototype);

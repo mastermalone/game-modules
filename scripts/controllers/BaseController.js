@@ -11,7 +11,7 @@
         BaseController.prototype = {
             constructor: BaseController,
             data: function (data) {
-                return data;
+                //Do stuff here if needed
             },
             updateModel: function (data, callback) {
                 //Receives data from the App.init() call.  This method is called from the controller that is inheriting from this BaseContoller object.
@@ -32,7 +32,7 @@
                 return dataObject;
             },
             destroy: function (elm, removeChildNodes) {
-                elm = typeof elm === 'string' ? document.getElementById(elm) : elm;
+                elm = typeof elm === 'string' ? document.querySelector(elm) : elm;
                 
                 if (removeChildNodes) {
                     while (elm.childNodes.length > 0) {
@@ -45,7 +45,7 @@
             },
             animate: function (el, from, to, easing, time) {
                 //Animates page elements
-                var elm = typeof el === 'string' ? document.getElementById(el) : el;
+                var elm = typeof el === 'string' ? document.querySelector(el) : el;
                 
                 createjs.CSSPlugin.install(createjs.Tween);
                 elm.style.width = elm.parentNode.offsetWidth+'px';

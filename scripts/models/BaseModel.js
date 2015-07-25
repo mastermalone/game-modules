@@ -1,7 +1,12 @@
 (function () {
     define(["Ajax"], function (Ajax) {
         function BaseModel () {
-            //Empty Constructor
+            this.userStats = {
+                user:'',
+                timeToComplete: '',
+                difficultyComplete: '',
+                level: ''
+            };
         }
         
         BaseModel.prototype = {

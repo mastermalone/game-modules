@@ -4,6 +4,7 @@
         var subclass = new SubClass();
         function ModalModel () {
             //Empty Constructor
+            BaseModel.call(this);
         }
         
         subclass.extend(ModalModel, BaseModel);

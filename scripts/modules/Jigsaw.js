@@ -2,16 +2,17 @@
     define(['Events', 'jquery-ui'], function (Events) {
         'use strict';
         
-        function Jigsaw (data, parent) {
+        function Jigsaw (data, parent, level) {
             this.data = data;
             this.parent = parent;
-            this.level = 1;  
-            this.imageMap = {};    
+            this.level = level;  
+            this.imageMap = {};  
         }
         
         Jigsaw.prototype = {
             constructor: Jigsaw,
             init: function () {
+                console.log('MAKING JIGSAW', this.data);
                 //Set up the defualts                
                 var evt = new Events();
                 evt.addEvent(window, ['setLevel'], this.getLevel.bind(this));
@@ -20,7 +21,6 @@
             createPieces: function (e) {
                 //Do the slicing  
                 //Use the curvePoints Object that gets passed in.
-                console.log('Getting the call!!', e.data);
                 var numPieces = this.data.puzzle['level'+this.level].pieces,
                     rows = Math.floor(Math.sqrt(numPieces)),//Horizontal
                     columns = Math.ceil(((numPieces)/Math.floor(Math.sqrt(numPieces)))),//Vertical Runded up to prevent uneven grids
@@ -81,7 +81,7 @@
                                 imgXValue = 0;
                             }
                             
-                            console.log('Value of width:', piece.width, 'Height:', piece.height, "Rows", rows, 'Columns', columns, 'X Position value:', imgXValue);
+                            //console.log('Value of width:', piece.width, 'Height:', piece.height, "Rows", rows, 'Columns', columns, 'X Position value:', imgXValue);
                             frag.appendChild(piece);
                         }
                         

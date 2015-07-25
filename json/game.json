@@ -4,61 +4,121 @@
             "pieces": 24,
             "opacity": 0.4,
             "completed": false,
-            "distance": 100
+            "distance": 100,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level2": {
             "pieces": 4,
             "opacity": 0.4,
             "completed": true,
-            "distance": 90
+            "distance": 90,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level3": {
             "pieces": 6,     
             "opacity": 0.5,
             "completed": false,
-            "distance": 50
+            "distance": 50,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level4": {
             "pieces": 9,
             "opacity": 0.6,
             "completed": true,
-            "distance": 75
+            "distance": 75,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level5": {
             "pieces": 12,
             "opacity": 0.6,
             "completed": false,
-            "distance": 75
+            "distance": 75,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level6": {
             "pieces": 15,
             "opacity": 0.7,
             "completed": true,
-            "distance": 75
+            "distance": 75,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level7": {
             "pieces": 20,
             "opacity": 0.8,
             "completed": true,
-            "distance": 80
+            "distance": 80,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level8": {
             "pieces": 24,
             "opacity": 0.9,
             "completed": true,
-            "distance": 85
+            "distance": 85,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level9": {
 			"pieces": 24,
 			"opacity": 0.9,
 			"completed": true,
-			"distance": 90
+			"distance": 90,
+			"overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         },
         "level10": {
             "pieces": 24,
             "opacity": 0,
             "completed": false,
-            "distance": 95
+            "distance": 95,
+            "overlay": true,
+            "numTickets": 3,
+            "rotation": true,
+            "distractors": false,
+            "allowCenter": true,
+            "lastCOmpleted": 5
         }
     },
     "image": "../../game-modules/public/images/butterfly.jpg",
