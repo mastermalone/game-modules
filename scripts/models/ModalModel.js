@@ -9,10 +9,6 @@
         
         subclass.extend(ModalModel, BaseModel);
         
-        ModalModel.prototype = {
-            constuctor: ModalModel
-        };
-        
         return ModalModel;
         
     });

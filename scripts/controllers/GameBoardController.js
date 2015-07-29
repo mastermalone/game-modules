@@ -15,10 +15,19 @@
         
         GameBoardController.prototype.init = function (data) {
             this.showGameBoard(data);
+            this.evts.addEvent(window, ['levelchange'], function () {
+                this.destroy('#image-view');
+                this.showGameBoard(data);
+            }.bind(this));
         };
         
         GameBoardController.prototype.showGameBoard = function (data) {
             this.gbv.on.show(data);
+            console.log('SHOWING GAMEBOARD');
+        },
+        
+        GameBoardController.prototype.test = function (e) {
+            console.log('THIS IS FROM GBC TEST', e.data);
         };
         return GameBoardController;
     });

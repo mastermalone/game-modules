@@ -1,16 +1,9 @@
 (function () {
-    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Events', 'CssTransitions', 'Dispatch', 'Tween', 'TweenCSS'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, CssTransitions, Dispatch) {
+    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Events', 'Dispatch', 'Tween', 'TweenCSS'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, Dispatch) {
         'use strict';
         var subclass = new SubClass;
         
         function ModalContoller () {
-           var privateUpdate = function (url) {
-               var ajax = new Ajax();
-               ajax.getData(url, function (data) {
-                   console.log('Getting Data now', data);
-               });
-           };
-           
            this.targ = '';
            this.modal = '';
            this.lvlNum = '';
@@ -18,7 +11,9 @@
            this.dsp = '';
            this.transitionEnd = '';
            this.mv = '';
-           this.mm = '';
+           this.fadeFrom = '';
+           this.fadeTo = '';
+           this.modalIsHidden = '';
            
            BaseController.call(this);
         }
@@ -27,6 +22,7 @@
         
         ModalContoller.prototype.init = function (data) {
             this.evts = new Events();
+            
             this.evts.addEvent(window, ['displayModal'], function (e) {                
                 this.lvlNum = e.target.id.substring(10, parseInt(e.target.id.length));
                 this.showModal(data, this.lvlNum);
@@ -38,10 +34,12 @@
         
         ModalContoller.prototype.showModal = function (data, lvl) {
             this.mv = ModalView;
-            this.mv.on.show(data, lvl);            
-            //this.mm = new ModalModel();
-            //this.mm.getState('modal-open');
-            console.log('MODAL MODEL', this.mm);
+            this.mv.on.show(data, lvl);
+            this.modal = document.querySelector('#lvs-modalBG');
+            this.fadeFrom = {opacity: 0};
+            this.fadeTo = {opacity:1};
+            this.animate(this.modal, this.fadeFrom, this.fadeTo, createjs.Ease.cubicIn, 500);
+            this.modalIsHidden = false;
             this.mv = null;
         }.bind(ModalContoller.prototype);
         
@@ -64,34 +62,35 @@
                 this.hideModal();
                 break;
             }
-           
         }.bind(ModalContoller.prototype);
         
         ModalContoller.prototype.hideModal = function () {
-            this.transitionEnd = CssTransitions.transitionEnd();
-            document.getElementById(this.modal).className = 'fade-out';
-            this.evts = new Events();
-            this.evts.addEvent(this.modal, [this.transitionEnd], this.transitionFinished);
-        };
-        
-        ModalContoller.prototype.transitionFinished = function (e) {
-            //Removes modal from DOM and cleans up objects
-            var targ = window.addEventListener ? e.target : e.srcElement;
-            this.evts.removeEvent(this.modal, [this.transitionEnd], this.transitionFinished);
-            this.dsp = new Dispatch();
-            this.dsp.customEvent(targ.id, 'retract');
-            this.dsp = null;
-            this.transitionEnd = null;
-            this.evts = null;
-            this.destroy('#'+targ.id);
+            this.modal = document.querySelector('#lvs-modalBG');
+            this.fadeFrom = {opacity: 1};
+            this.fadeTo = {opacity:0};
+            this.modalIsHidden = true;
+            this.animate(this.modal, this.fadeFrom, this.fadeTo, createjs.Ease.cubicIn, 500);
         }.bind(ModalContoller.prototype);
         
         ModalContoller.prototype.changeLevel = function () {
-            //Use this.lvlNum to send the number of the level to the API or whatever means to change the current level
+            //Send the level number via the dispacthed event data object for any subscriber.
             this.dsp = new Dispatch();
             this.dsp.customEvent(this.targ.id, 'levelChangeConfirmation', {level:this.lvlNum});
             this.dsp = null;
-        };
+        },
+        ModalContoller.prototype.handleComplete = function (e) {
+            //Removes modal from DOM and cleans up objects
+            var targ = window.addEventListener ? e.target : e.srcElement;
+            if (this.modalIsHidden) {
+                this.dsp = new Dispatch();
+                this.dsp.customEvent(targ.id, 'retract');
+                this.dsp = null;
+                this.transitionEnd = null;
+                this.evts = null;
+                this.destroy('#'+targ.id);
+                targ = null;
+            }
+        }.bind(ModalContoller.prototype);
         
         return ModalContoller;
     });

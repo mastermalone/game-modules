@@ -5,7 +5,7 @@
         function Jigsaw (data, parent, level) {
             this.data = data;
             this.parent = parent;
-            this.level = level;  
+            this.level = level || 4;  
             this.imageMap = {};  
         }
         
@@ -16,7 +16,7 @@
                 //Set up the defualts                
                 var evt = new Events();
                 evt.addEvent(window, ['setLevel'], this.getLevel.bind(this));
-                evt.addEvent(window, ['imagesize'], this.createPieces.bind(this));
+                evt.addEvent(window, ['imageloaded'], this.createPieces.bind(this));
             },
             createPieces: function (e) {
                 //Do the slicing  
@@ -38,13 +38,19 @@
                 
                 if (!this.data.image) {
                     return;
-                    console.log('aduh hello!', this.data.image);
+                    console.log('No data for the image has been sent!', this.data.image);
                 }else {
                     img = new Image();                
                     img.src = this.data.image;
-                    console.log('Number of pieces', this.data.image, this.data);
-                    console.log('Number of ', numPieces);
-    
+                    console.log('Number of pieces',  numPieces, 'Image', this.data.image, 'data', this.data);
+                    
+                    if (!document.querySelector(this.parent)) {
+                        console.log('The Parent is null', document.querySelector(this.parent));
+                        return;
+                    }else {
+                        widthStr = window.getComputedStyle(document.querySelector(this.parent)).width;
+                    }
+                    
                     img.onload = function () {
                         //for (var i = 0; i < numPieces; i++) {
                         for (var i = 0; i < rows*columns; i++) {
@@ -66,7 +72,9 @@
                             //X and Y coordinates for tray placement
                             piece.style.top += ((piece.height+10)*i)+'px';
                             piece.style.left = 10+'px';
-                            widthStr = window.getComputedStyle(document.querySelector(this.parent)).width;
+                                                        
+                            
+                            //widthStr = window.getComputedStyle(document.querySelector(this.parent)).width;
                             parentWidth = parseFloat(widthStr.substring(0, widthStr.length-2));
                             
                             //Subtract the imgXvalue to move the background position along according to the next piece that needs to be painted with a section of the image

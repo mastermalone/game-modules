@@ -64,9 +64,16 @@
             this.model = new TrayModel();
             this.model.userStats.level = e.data.level;
             this.view = TrayView;
-            console.log('THE CHANGED LEVEL', TrayData.json);
-            this.destroy('#tray-content', true);
-            this.view.setLevel(TrayData.json, this.model.userStats.level);
+            
+            //this.destroy('#tray-content', true);
+            this.destroy('.scroller-content', true);
+            
+            this.dsp = new Dispatch();                
+            this.dsp.customEvent('tray', 'levelchange');
+            this.dsp = null;
+            
+            
+            //this.view.setLevel(TrayData.json, this.model.userStats.level);
             //console.log('THE CHANGED LEVEL', this.model.userStats.level);
             
             this.model = null;
