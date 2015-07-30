@@ -23,12 +23,8 @@
         
         GameBoardController.prototype.showGameBoard = function (data) {
             this.gbv.on.show(data);
-            console.log('SHOWING GAMEBOARD');
-        },
-        
-        GameBoardController.prototype.test = function (e) {
-            console.log('THIS IS FROM GBC TEST', e.data);
         };
+        
         return GameBoardController;
     });
 }());

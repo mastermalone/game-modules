@@ -38,7 +38,7 @@
             this.lsm.getState('level Select Open');
             
             this.lsm.userStats.user = 'Mike';
-            console.log('WHATS MY DATA?:', this.lsm.postData);
+            console.log('WHATS MY DATA?:', this.lsm.userStats);
                         
             ls = document.getElementById('level-select');
             ls.style.left = ls.parentNode.offsetWidth+'px';
