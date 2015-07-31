@@ -14,6 +14,8 @@
                     tc = new TrayController(),
                     gbc = new GameBoardController(),
                     ajax = new Ajax();
+                    
+                    console.log('VALUE OF CONTROLLER', lvc);
                 
                 //Add Data to model
                 (function () {

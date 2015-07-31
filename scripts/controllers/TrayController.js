@@ -1,5 +1,5 @@
 (function () {
-    define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'Dispatch', 'Events'], function (Subclass, BaseController, TrayModel, TrayView, Dispatch, Events) {
+    define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'Dispatch', 'Events', 'jquery-ui'], function (Subclass, BaseController, TrayModel, TrayView, Dispatch, Events) {
         'use strict';
         var subclass = new Subclass();
         var TrayData = {};
@@ -46,6 +46,7 @@
                 break;
                 case 'jigsaw-piece':
                 console.log('mousing down on puzzle piece');
+                document.getElementById('tray').parentNode.appendChild(targ);
                 break;
             }
         }.bind(TrayController.prototype);
@@ -85,6 +86,11 @@
                 return;
             }else {
                 //Do something 
+                $(document).mousemove(function (e) {
+                    $(piece).position({
+                        
+                    });
+                });
             }
         };
         

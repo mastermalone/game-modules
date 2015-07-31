@@ -5,7 +5,7 @@
         function Jigsaw (data, parent, level) {
             this.data = data;
             this.parent = parent;
-            this.level = level || 4;  
+            this.level = level || 1;  
             this.imageMap = {};  
         }
         
@@ -38,7 +38,7 @@
                 
                 if (!this.data.image) {
                     return;
-                    console.log('No data for the image has been sent!', this.data.image);
+                    console.log('No data for the image has been received!', this.data.image);
                 }else {
                     img = new Image();                
                     img.src = this.data.image;
