@@ -45,8 +45,7 @@
                 this.dsp = null;
                 break;
                 case 'jigsaw-piece':
-                console.log('mousing down on puzzle piece');
-                document.getElementById('tray').parentNode.appendChild(targ);
+                this.addContentToStage(targ, e);
                 break;
             }
         }.bind(TrayController.prototype);
@@ -65,32 +64,25 @@
             this.model = new TrayModel();
             this.model.userStats.level = e.data.level;
             this.view = TrayView;
-            
-            //this.destroy('#tray-content', true);
+
             this.destroy('.scroller-content', true);
+            $('.jigsaw-piece').remove();
             
             this.dsp = new Dispatch();                
             this.dsp.customEvent('tray', 'levelchange');
             this.dsp = null;
-            
-            
-            //this.view.setLevel(TrayData.json, this.model.userStats.level);
-            //console.log('THE CHANGED LEVEL', this.model.userStats.level);
-            
             this.model = null;
             
         }.bind(TrayController.prototype);
         
-        TrayController.prototype.addContentToStage = function (piece, tray) {
+        TrayController.prototype.addContentToStage = function (piece, e) {
+            //Takes the piece from the tray
             if (!piece) {
                 return;
             }else {
-                //Do something 
-                $(document).mousemove(function (e) {
-                    $(piece).position({
-                        
-                    });
-                });
+                $('#tray').parent().append(piece);
+                var offset = $('#main').offset();
+                $(piece).css({left:(e.pageX - offset.left) - ($(piece).width()/2), top:(e.pageY - offset.top) - ($(piece).height()/2)});
             }
         };
         

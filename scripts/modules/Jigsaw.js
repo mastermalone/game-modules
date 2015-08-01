@@ -69,10 +69,8 @@
                             //Create image map grid
                             this.createImageMap(i, imgXValue, imgYValue);
                             
-                            //X and Y coordinates for tray placement
-                            piece.style.top += ((piece.height+10)*i)+'px';
-                            piece.style.left = 10+'px';
-                                                        
+                            //X coordinate for tray placement
+                            //piece.style.left = 10+'px'; 
                             
                             //widthStr = window.getComputedStyle(document.querySelector(this.parent)).width;
                             parentWidth = parseFloat(widthStr.substring(0, widthStr.length-2));
@@ -101,7 +99,7 @@
                             distance: 0,
                             cursor: 'move',
                             snap: '#content',
-                            revert: 'invalid'//flies back to original position
+                            //revert: 'invalid'//flies back to original position
                         });
                        
                     }.bind(this);

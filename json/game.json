@@ -10,7 +10,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level2": {
             "pieces": 4,
@@ -22,7 +22,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level3": {
             "pieces": 6,     
@@ -34,7 +34,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level4": {
             "pieces": 9,
@@ -46,7 +46,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level5": {
             "pieces": 12,
@@ -58,7 +58,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level6": {
             "pieces": 15,
@@ -70,7 +70,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level7": {
             "pieces": 20,
@@ -82,7 +82,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level8": {
             "pieces": 24,
@@ -94,7 +94,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level9": {
 			"pieces": 24,
@@ -106,7 +106,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         },
         "level10": {
             "pieces": 24,
@@ -118,7 +118,7 @@
             "rotation": true,
             "distractors": false,
             "allowCenter": true,
-            "lastCOmpleted": 5
+            "lastCompleted": 5
         }
     },
     "image": "../../game-modules/public/images/butterfly.jpg",
