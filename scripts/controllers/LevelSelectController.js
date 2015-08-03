@@ -1,5 +1,5 @@
 (function () {
-    define(['Subclass', 'BaseController', 'LevelSelectModel', 'LevelSelectView', 'Events', 'Dispatch'], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch) {
+    define(['Subclass', 'BaseController', 'LevelSelectModel', 'LevelSelectView', 'Events', 'Dispatch', 'EventList'], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, Events, Dispatch, EventList) {
         'use strict';
         
         var subClass = new Subclass();
@@ -24,7 +24,9 @@
             this.evts = new Events();
             this.evts.addEvent(window, ['levelSelect'], function (e) {
                 this.showLevelSelect(data);
-            }.bind(LevelSelectController.prototype));   
+            }.bind(LevelSelectController.prototype));
+            
+            EventList.publish('levelSelectLoaded', {loaded:true});
             this.evts = null;         
         };
         
@@ -106,6 +108,7 @@
             }
             ls = null;
         }.bind(LevelSelectController.prototype);
+        
         
         return LevelSelectController;        
     });

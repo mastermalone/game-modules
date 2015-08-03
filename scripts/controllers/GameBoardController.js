@@ -1,5 +1,5 @@
 (function () {
-    define(['BaseController', 'Subclass', 'GameBoardView', 'GameBoardModel', 'Events'], function (BaseController, Subclass, GameBoardView, GameBoardModel, Events) {
+    define(['BaseController', 'Subclass', 'GameBoardView', 'GameBoardModel', 'Events', 'EventList'], function (BaseController, Subclass, GameBoardView, GameBoardModel, Events, EventList) {
         'use strict';
         var subclass = new Subclass();
         
@@ -23,8 +23,13 @@
         
         GameBoardController.prototype.showGameBoard = function (data) {
             this.gbv.on.show(data);
+            EventList.subscribe('levelSelectLoaded', this.test);
         };
         
+        GameBoardController.prototype.test = function (data) {
+            console.log('GETTING THE LEVELSELECT EVENT', data);
+            EventList.remove('levelSelectLoaded');
+        };
         return GameBoardController;
     });
 }());
