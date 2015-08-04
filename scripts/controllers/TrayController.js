@@ -27,6 +27,7 @@
             this.view.on.show(data);//Do the level select on.show() with an evt.addListener();  displatch event from here with level select dispatch event
             this.view.setLevel(data, this.level);
             this.evts.addEvent('tray', ['mousedown'], this.fireEvents);
+            document.getElementById('tray').addEventListener('mousedown', this.fireEvents);
             this.evts.addEvent(window, ['setLevel'], this.setLevel);
             this.evts.addEvent(window, ['levelChangeConfirmation'], this.confirmedLevelChange);
             this.evts = null;
@@ -36,23 +37,25 @@
             return data;
         },
         TrayController.prototype.fireEvents = function (e) {
+            console.log('### TrayController fireEvents');
             var targ = window.addEventListener ? e.target : e.srcElement;
             
             switch (targ.getAttribute('data')) {
                 case 'lv-sel':
-                this.dsp = new Dispatch();                
-                this.dsp.customEvent('level-selector', 'levelSelect');
-                this.dsp = null;
-                break;
+                    this.dsp = new Dispatch();
+                    this.dsp.customEvent('level-selector', 'levelSelect');
+                    this.dsp = null;
+                    break;
                 case 'jigsaw-piece':
-                this.addContentToStage(targ, e);
-                break;
+                    this.addContentToStage(targ, e);
+                    break;
             }
         }.bind(TrayController.prototype);
         
         TrayController.prototype.setLevel = function (e) {
              //This gets set all the time, but will only be used when a level change is confirmed.
              this.level = e.target.id.substring(10, parseInt(e.target.id.length));
+            console.log('SET LEVEL');
         }.bind(TrayController.prototype);
         
         TrayController.prototype.confirmedLevelChange = function (e) {

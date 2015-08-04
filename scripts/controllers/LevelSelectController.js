@@ -25,12 +25,13 @@
             this.evts.addEvent(window, ['levelSelect'], function (e) {
                 this.showLevelSelect(data);
             }.bind(LevelSelectController.prototype));
-            
+
             EventList.publish('levelSelectLoaded', {loaded:true});
-            this.evts = null;         
+            this.evts = null;
         };
         
         LevelSelectController.prototype.showLevelSelect = function (data) {
+            alert('### showLevelSelect');
             //Receives data from the initial app.init() call in app.js
             var ls;
             this.retracted = false;
@@ -54,7 +55,8 @@
         
         LevelSelectController.prototype.addInteraction = function () {
             this.evts = new Events();
-            this.evts.addEvent('level-select', ['mousedown'], this.fireEvents);
+            //this.evts.addEvent('level-select', ['mousedown'], this.fireEvents);
+            document.getElementById('level-select').addEventListener('mousedown', this.fireEvents);
             this.evts.addEvent(window, ['retract'], this.retract);
         };
         
@@ -73,7 +75,10 @@
             switch (isSelectBtn) {
                 case true:
                 this.dsp = new Dispatch();
-                this.dsp.customEvent(targ.id, 'displayModal');
+                //this.dsp.customEvent(targ.id, 'displayModal');
+                    this.dsp.customEvent(targ.id, 'displayModal', {
+                        lvlNum: targ.id.substring(10, parseInt(e.target.id.length))
+                    });
                 this.dsp.customEvent(targ.id, 'setLevel');
                 this.dsp = null;
                 break;

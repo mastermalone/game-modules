@@ -21,7 +21,7 @@
                 (function () {
                    ajax.get(url).then(function (response) {
                         var data = JSON.parse(response); //This is only for the mock service
-                        //Pass in the data from this call to the controllers.  
+                        //Pass in the data from this call to the controllers.
                         //This is the intial call that gets data into the models and subsequently, to the views                        
                         gbc.init(baseModel.setData(data));//Set up the gameboard
                         lvc.init(baseModel.setData(data));//Set up the level select
@@ -34,8 +34,8 @@
             },
             init: function (url) {
                 var date = new Date(),
-                    lvc = new LevelSelectController(),
-                    emitter = new Emitter(lvc);
+                    lvc = new LevelSelectController();
+                    //emitter = new Emitter(lvc);
                     
                 //Kick off the App
                 this.initControllers(url+'?a='+date.getTime());

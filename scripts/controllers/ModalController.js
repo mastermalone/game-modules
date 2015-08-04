@@ -24,11 +24,12 @@
             this.evts = new Events();
             
             this.evts.addEvent(window, ['displayModal'], function (e) {                
-                this.lvlNum = e.target.id.substring(10, parseInt(e.target.id.length));
+                //this.lvlNum = e.target.id.substring(10, parseInt(e.target.id.length));
+                this.lvlNum = e.data.lvlNum;
                 this.showModal(data, this.lvlNum);
             }.bind(ModalContoller.prototype));
             
-            this.evts.addEvent(window, ['modalLoaded'], this.addInteraction.bind(ModalContoller.prototype));
+            //this.evts.addEvent(window, ['modalLoaded'], this.addInteraction.bind(ModalContoller.prototype));
             this.evts = null;
         };
         

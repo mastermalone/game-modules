@@ -1,5 +1,5 @@
 (function () {
-    define(function () {
+    define(['Emitter'], function (emitter) {
         'use strict';
         function Dispatch () {
             //Empty
@@ -35,10 +35,14 @@
                         return new F();
                     };
                 }
-                
-                elm.dispatchEvent(evt);
+
+                console.log('### emitter publishing event:', type, data);
+                emitter.emit(type, { data: data });
+
+                //elm.dispatchEvent(evt);
                 
                 console.log('Getting into  Dispatch', typeof elm, type, 'dispatcher name:', elm);
+
             }
         };
         return Dispatch;

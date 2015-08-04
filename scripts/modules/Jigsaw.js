@@ -19,6 +19,8 @@
                 evt.addEvent(window, ['imageloaded'], this.createPieces.bind(this));
             },
             createPieces: function (e) {
+                console.log('### createPieces args:', arguments);
+
                 //Do the slicing  
                 //Use the curvePoints Object that gets passed in.
                 var numPieces = this.data.puzzle['level'+this.level].pieces,

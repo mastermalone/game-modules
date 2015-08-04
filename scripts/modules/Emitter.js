@@ -1,7 +1,7 @@
 (function () {
     define(['EventEmitter2'], function (EventEmitter2) {
         'use strict';
-        
+
         console.log('EVENT EMITTER:', EventEmitter2);
         function Emitter (obj) {
             //Empty
@@ -83,6 +83,7 @@
                 console.log('Removing event listener');
             }
         };*/
-        return Emitter;
+
+        return new Emitter();
     });
 }());
