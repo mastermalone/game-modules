@@ -1,10 +1,11 @@
 (function () {
-    define(['Subclass', 'BaseController', 'LevelSelectModel', 'LevelSelectView', 'Emitter'], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, emitter) {
+    define(['Subclass', 'BaseController', 'LevelSelectModel', 'LevelSelectView', 'Emitter', 'Events'], function (Subclass, BaseController, LevelSelectModel, LevelSelectView, emitter, Events) {
         'use strict';
         
         var subClass = new Subclass();
 		
         function LevelSelectController () {
+            this.evts = '';
             this.retracted = true;
             this.lsm = '';
             this.lsv = '';
@@ -18,6 +19,8 @@
         subClass.extend(LevelSelectController, BaseController);
         
         LevelSelectController.prototype.init = function (data) {
+            this.evts = new Events();
+
             //Listens for 'levelSelect' event to call the create the level select
             emitter.on('levelSelect', function() {
                 this.showLevelSelect(data);
@@ -48,8 +51,8 @@
         };
         
         LevelSelectController.prototype.addInteraction = function () {
-            var levelSelectPanel = document.getElementById('level-select');
-            levelSelectPanel.addEventListener('mousedown', this.fireEvents, true);
+            this.evts = new Events();
+            this.evts.addEvent('level-select', ['mousedown'], this.fireEvents);
 
             emitter.on('retract', this.retract);
         };
@@ -92,7 +95,7 @@
             if (this.retracted) {
                 console.log('### lsm inside handleComplete retracted', this.lsm);
                 this.lsm.getState('playing');
-                document.getElementById('level-select').removeEventListener('mousedown');
+                this.evts.removeEvent('level-select', ['mousedown'], this.fireEvents);
                 emitter.off('retract', this.retract);
                 this.evts = null;
                 this.lsm = null; 

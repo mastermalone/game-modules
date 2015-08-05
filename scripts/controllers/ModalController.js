@@ -1,19 +1,20 @@
 (function () {
-    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Tween', 'TweenCSS', 'Emitter'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Tween, TweenCSS, emitter) {
+    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Tween', 'TweenCSS', 'Emitter', 'Events'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Tween, TweenCSS, emitter, Events) {
         'use strict';
         var subclass = new SubClass;
         
         function ModalController () {
-           this.targ = '';
-           this.modal = '';
-           this.lvlNum = '';
-           this.transitionEnd = '';
-           this.mv = '';
-           this.fadeFrom = '';
-           this.fadeTo = '';
-           this.modalIsHidden = '';
+            this.targ = '';
+            this.modal = '';
+            this.lvlNum = '';
+            this.evts = '';
+            this.transitionEnd = '';
+            this.mv = '';
+            this.fadeFrom = '';
+            this.fadeTo = '';
+            this.modalIsHidden = '';
            
-           BaseController.call(this);
+            BaseController.call(this);
         }
         
         subclass.extend(ModalController, BaseController);
@@ -41,9 +42,9 @@
         ModalController.prototype.addInteraction = function (modalData) {
             //Add event to the modal DOM Element;
             this.modal = modalData.modalId;
-
-            var modal = document.getElementById(this.modal);
-            modal.addEventListener('mousedown', this.fireEvents, true);
+            this.evts = new Events();
+            this.evts.addEvent(this.modal, ['mousedown'], this.fireEvents);
+            this.evts = null;
         };
         
         ModalController.prototype.fireEvents = function (e) {

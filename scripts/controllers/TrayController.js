@@ -1,11 +1,12 @@
 (function () {
-    define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'jquery-ui', 'Emitter'],
-        function (Subclass, BaseController, TrayModel, TrayView, jqueryUi, emitter) {
+    define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'jquery-ui', 'Emitter', 'Events'],
+        function (Subclass, BaseController, TrayModel, TrayView, jqueryUi, emitter, Events) {
         'use strict';
         var subclass = new Subclass();
         var TrayData = {};
         
         function TrayController () {
+            this.evts = '';
             this.level = 1;
             this.view = '';
             this.model = '';
@@ -17,6 +18,7 @@
         subclass.extend(TrayController, BaseController);
         
         TrayController.prototype.init = function (data) {
+            this.evts = new Events();
             this.view = TrayView;
             TrayData.json = data;
             
@@ -24,7 +26,7 @@
             //This controller listens the level changes and controls the puzzle pieces
             this.view.on.show(data);//Do the level select on.show() with an evt.addListener();  displatch event from here with level select dispatch event
             this.view.setLevel(data, this.level);
-            document.getElementById('tray').addEventListener('mousedown', this.fireEvents, true);
+            this.evts.addEvent('tray', ['mousedown'], this.fireEvents);
             emitter.on('setLevel', this.setLevel);
             emitter.on('levelChangeConfirmation', this.confirmedLevelChange);
             this.view = null;
