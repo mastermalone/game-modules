@@ -1,14 +1,12 @@
 (function () {
-    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Events', 'Dispatch', 'Tween', 'TweenCSS'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Events, Dispatch) {
+    define(['BaseController', 'Subclass', 'Ajax', 'ModalModel', 'ModalView', 'Tween', 'TweenCSS', 'Emitter'], function (BaseController, SubClass, Ajax, ModalModel, ModalView, Tween, TweenCSS, emitter) {
         'use strict';
         var subclass = new SubClass;
         
-        function ModalContoller () {
+        function ModalController () {
            this.targ = '';
            this.modal = '';
            this.lvlNum = '';
-           this.evts = '';
-           this.dsp = '';
            this.transitionEnd = '';
            this.mv = '';
            this.fadeFrom = '';
@@ -18,22 +16,18 @@
            BaseController.call(this);
         }
         
-        subclass.extend(ModalContoller, BaseController);
+        subclass.extend(ModalController, BaseController);
         
-        ModalContoller.prototype.init = function (data) {
-            this.evts = new Events();
-            
-            this.evts.addEvent(window, ['displayModal'], function (e) {                
-                //this.lvlNum = e.target.id.substring(10, parseInt(e.target.id.length));
-                this.lvlNum = e.data.lvlNum;
+        ModalController.prototype.init = function (data) {
+            emitter.on('displayModal', function(levelData) {
+                this.lvlNum = levelData.lvlNum;
                 this.showModal(data, this.lvlNum);
-            }.bind(ModalContoller.prototype));
-            
-            //this.evts.addEvent(window, ['modalLoaded'], this.addInteraction.bind(ModalContoller.prototype));
-            this.evts = null;
+            }.bind(this));
+
+            emitter.on('modalLoaded', this.addInteraction.bind(ModalController.prototype));
         };
         
-        ModalContoller.prototype.showModal = function (data, lvl) {
+        ModalController.prototype.showModal = function (data, lvl) {
             this.mv = ModalView;
             this.mv.on.show(data, lvl);
             this.modal = document.querySelector('#lvs-modalBG');
@@ -42,57 +36,52 @@
             this.animate(this.modal, this.fadeFrom, this.fadeTo, createjs.Ease.cubicIn, 500);
             this.modalIsHidden = false;
             this.mv = null;
-        }.bind(ModalContoller.prototype);
+        }.bind(ModalController.prototype);
         
-        ModalContoller.prototype.addInteraction = function (e) {
+        ModalController.prototype.addInteraction = function (modalData) {
             //Add event to the modal DOM Element;
-            this.modal = e.target.id;
-            this.evts = new Events();
-            this.evts.addEvent(this.modal, ['mousedown'], this.fireEvents);
-            this.evts = null;
+            this.modal = modalData.modalId;
+
+            var modal = document.getElementById(this.modal);
+            modal.addEventListener('mousedown', this.fireEvents);
         };
         
-        ModalContoller.prototype.fireEvents = function (e) {
+        ModalController.prototype.fireEvents = function (e) {
             this.targ = window.addEventListener ? e.target : e.srcElement;
             switch (this.targ.id) {
                 case 'cancel':
-                this.hideModal();
-                break;
+                    this.hideModal();
+                    break;
                 case 'confirm':
-                this.changeLevel();
-                this.hideModal();
-                break;
+                    this.changeLevel();
+                    this.hideModal();
+                    break;
             }
-        }.bind(ModalContoller.prototype);
+        }.bind(ModalController.prototype);
         
-        ModalContoller.prototype.hideModal = function () {
+        ModalController.prototype.hideModal = function () {
             this.modal = document.querySelector('#lvs-modalBG');
             this.fadeFrom = {opacity: 1};
             this.fadeTo = {opacity:0};
             this.modalIsHidden = true;
             this.animate(this.modal, this.fadeFrom, this.fadeTo, createjs.Ease.cubicIn, 500);
-        }.bind(ModalContoller.prototype);
+        }.bind(ModalController.prototype);
         
-        ModalContoller.prototype.changeLevel = function () {
+        ModalController.prototype.changeLevel = function () {
             //Send the level number via the dispacthed event data object for any subscriber.
-            this.dsp = new Dispatch();
-            this.dsp.customEvent(this.targ.id, 'levelChangeConfirmation', {level:this.lvlNum});
-            this.dsp = null;
+            emitter.emit('levelChangeConfirmation', { level: this.lvlNum });
         },
-        ModalContoller.prototype.handleComplete = function (e) {
+        ModalController.prototype.handleComplete = function (e) {
             //Removes modal from DOM and cleans up objects
             var targ = window.addEventListener ? e.target : e.srcElement;
             if (this.modalIsHidden) {
-                this.dsp = new Dispatch();
-                this.dsp.customEvent(targ.id, 'retract');
-                this.dsp = null;
+                emitter.emit('retract');
                 this.transitionEnd = null;
-                this.evts = null;
                 this.destroy('#'+targ.id);
                 targ = null;
             }
-        }.bind(ModalContoller.prototype);
+        }.bind(ModalController.prototype);
         
-        return ModalContoller;
+        return ModalController;
     });
 }());

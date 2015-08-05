@@ -1,5 +1,5 @@
 (function () {
-    define(['Events', 'jquery-ui'], function (Events) {
+    define(['Emitter'], function (emitter) {
         'use strict';
         
         function Jigsaw (data, parent, level) {
@@ -13,13 +13,12 @@
             constructor: Jigsaw,
             init: function () {
                 console.log('MAKING JIGSAW', this.data);
-                //Set up the defualts                
-                var evt = new Events();
-                evt.addEvent(window, ['setLevel'], this.getLevel.bind(this));
-                evt.addEvent(window, ['imageloaded'], this.createPieces.bind(this));
+                //Set up the defaults
+                emitter.on('setLevel', this.getLevel.bind(this));
+                emitter.on('imageloaded', this.createPieces.bind(this));
             },
-            createPieces: function (e) {
-                console.log('### createPieces args:', arguments);
+            createPieces: function (imageData) {
+                console.log('### createPieces:', imageData);
 
                 //Do the slicing  
                 //Use the curvePoints Object that gets passed in.
@@ -35,8 +34,7 @@
                     imgYValue = 0, 
                     piece, 
                     ctx, 
-                    img, 
-                    evt;
+                    img;
                 
                 if (!this.data.image) {
                     return;
@@ -60,8 +58,8 @@
                             piece.className = 'jigsaw-piece';
                             piece.id = 'jigsaw-'+i;
                             piece.setAttribute('data', 'jigsaw-piece');
-                            piece.width = (Math.ceil(e.data.width)/columns);
-                            piece.height = (Math.ceil(e.data.height)/rows);
+                            piece.width = (Math.ceil(imageData.width)/columns);
+                            piece.height = (Math.ceil(imageData.height)/rows);
                             piece.style.border = 'solid 1px #ff0000';
                             ctx = piece.getContext('2d');
                             
@@ -78,14 +76,14 @@
                             parentWidth = parseFloat(widthStr.substring(0, widthStr.length-2));
                             
                             //Subtract the imgXvalue to move the background position along according to the next piece that needs to be painted with a section of the image
-                            ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
+                            ctx.drawImage(img, (-imgXValue), (-imgYValue), imageData.width, imageData.height);
                             
                             imgXValue += (piece.width);
                                                     
                             //If the width of one row of puzzle peices is greater than or equal to the total witdh of the image minus one puzzle piece, increase the Y value by one puzzle piece height
-                            if ((imgXValue - (piece.width-piece.width)) >= (e.data.width -10)) {
+                            if ((imgXValue - (piece.width-piece.width)) >= (imageData.width -10)) {
                                 imgYValue += piece.height;
-                                console.log('Greater than or equal to width:', 'X Position:',(imgXValue - piece.width), 'Total Width:',  e.data.width, 'Y Position', imgYValue);
+                                console.log('Greater than or equal to width:', 'X Position:',(imgXValue - piece.width), 'Total Width:',  imageData.width, 'Y Position', imgYValue);
                                 imgXValue = 0;
                             }
                             
@@ -100,7 +98,7 @@
                             stack: 'canvas',//Forcess Z-index to top for current clicked canvas
                             distance: 0,
                             cursor: 'move',
-                            snap: '#content',
+                            snap: '#content'
                             //revert: 'invalid'//flies back to original position
                         });
                        
@@ -113,8 +111,8 @@
                 this.imageMap['image'+itterator+'X'] = xValue;
                 this.imageMap['image'+itterator+'Y'] = yValue;
             },
-            getLevel: function (e) {
-                this.level = e.target.id.substring(10, parseInt(e.target.id.length));
+            getLevel: function (levelData) {
+                this.level = levelData.lvlNum;
                 console.log("GETTING THE LEVEL TARGET NUMBER:", this.level);
             },
             appendTo: function (el, child) {
