@@ -49,7 +49,7 @@
         
         LevelSelectController.prototype.addInteraction = function () {
             var levelSelectPanel = document.getElementById('level-select');
-            levelSelectPanel.addEventListener('mousedown', this.fireEvents);
+            levelSelectPanel.addEventListener('mousedown', this.fireEvents, true);
 
             emitter.on('retract', this.retract);
         };

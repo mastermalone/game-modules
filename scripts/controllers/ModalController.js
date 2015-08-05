@@ -43,7 +43,7 @@
             this.modal = modalData.modalId;
 
             var modal = document.getElementById(this.modal);
-            modal.addEventListener('mousedown', this.fireEvents);
+            modal.addEventListener('mousedown', this.fireEvents, true);
         };
         
         ModalController.prototype.fireEvents = function (e) {

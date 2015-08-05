@@ -1,5 +1,5 @@
 (function () {
-    define(['Emitter'], function (emitter) {
+    define([], function () {
         'use strict';
         function Dispatch () {
             //Empty
@@ -36,10 +36,7 @@
                     };
                 }
 
-                console.log('### emitter publishing event:', type, data);
-                emitter.emit(type, { data: data });
-
-                //elm.dispatchEvent(evt);
+                elm.dispatchEvent(evt);
                 
                 console.log('Getting into  Dispatch', typeof elm, type, 'dispatcher name:', elm);
 

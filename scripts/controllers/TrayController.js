@@ -24,7 +24,7 @@
             //This controller listens the level changes and controls the puzzle pieces
             this.view.on.show(data);//Do the level select on.show() with an evt.addListener();  displatch event from here with level select dispatch event
             this.view.setLevel(data, this.level);
-            document.getElementById('tray').addEventListener('mousedown', this.fireEvents);
+            document.getElementById('tray').addEventListener('mousedown', this.fireEvents, true);
             emitter.on('setLevel', this.setLevel);
             emitter.on('levelChangeConfirmation', this.confirmedLevelChange);
             this.view = null;
