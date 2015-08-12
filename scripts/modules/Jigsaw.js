@@ -1,5 +1,5 @@
 (function () {
-    define(['Events', 'jquery-ui'], function (Events) {
+    define(['PuzzlePieceFactory', 'Events', 'jquery-ui'], function (PuzzlePieceFactory, Events) {
         'use strict';
         
         function Jigsaw (data, parent, level) {
@@ -19,91 +19,69 @@
                 evt.addEvent(window, ['imageloaded'], this.createPieces.bind(this));
             },
             createPieces: function (e) {
-                //Do the slicing  
-                //Use the curvePoints Object that gets passed in.
-                var numPieces = this.data.puzzle['level'+this.level].pieces,
-                    rows = Math.floor(Math.sqrt(numPieces)),//Horizontal
-                    columns = Math.ceil(((numPieces)/Math.floor(Math.sqrt(numPieces)))),//Vertical Runded up to prevent uneven grids
-                    frag = document.createDocumentFragment(), 
-                    width,
-                    height,
-                    widthStr,
-                    parentWidth,
-                    imgXValue = 0,
-                    imgYValue = 0, 
-                    piece, 
-                    ctx, 
-                    img, 
-                    evt;
-                
-                if (!this.data.image) {
-                    return;
-                    console.log('No data for the image has been received!', this.data.image);
-                }else {
-                    img = new Image();                
-                    img.src = this.data.image;
-                    console.log('Number of pieces',  numPieces, 'Image', this.data.image, 'data', this.data);
-                    
-                    if (!document.querySelector(this.parent)) {
-                        console.log('The Parent is null', document.querySelector(this.parent));
-                        return;
-                    }else {
-                        widthStr = window.getComputedStyle(document.querySelector(this.parent)).width;
-                    }
-                    
-                    img.onload = function () {
-                        //for (var i = 0; i < numPieces; i++) {
-                        for (var i = 0; i < rows*columns; i++) {
-                            piece = document.createElement('canvas');
-                            piece.className = 'jigsaw-piece';
-                            piece.id = 'jigsaw-'+i;
-                            piece.setAttribute('data', 'jigsaw-piece');
-                            piece.width = (Math.ceil(e.data.width)/columns);
-                            piece.height = (Math.ceil(e.data.height)/rows);
-                            piece.style.border = 'solid 1px #ff0000';
-                            ctx = piece.getContext('2d');
-                            
-                            ctx.save();
-                            ctx.bezierCurveTo(20,100,200,100,200,20);// Create besier curve based on random and only from the right until the last image from the ight is made
-                            
-                            //Create image map grid
-                            this.createImageMap(i, imgXValue, imgYValue);
-                            
-                            //X coordinate for tray placement
-                            //piece.style.left = 10+'px'; 
-                            
-                            //widthStr = window.getComputedStyle(document.querySelector(this.parent)).width;
-                            parentWidth = parseFloat(widthStr.substring(0, widthStr.length-2));
-                            
-                            //Subtract the imgXvalue to move the background position along according to the next piece that needs to be painted with a section of the image
-                            ctx.drawImage(img, (-imgXValue), (-imgYValue), e.data.width, e.data.height);
-                            
-                            imgXValue += (piece.width);
-                                                    
-                            //If the width of one row of puzzle peices is greater than or equal to the total witdh of the image minus one puzzle piece, increase the Y value by one puzzle piece height
-                            if ((imgXValue - (piece.width-piece.width)) >= (e.data.width -10)) {
-                                imgYValue += piece.height;
-                                console.log('Greater than or equal to width:', 'X Position:',(imgXValue - piece.width), 'Total Width:',  e.data.width, 'Y Position', imgYValue);
-                                imgXValue = 0;
+                if (!this.data.image) return;
+
+                var imageWidth = e.data.width;
+                var imageHeight = e.data.height;
+
+                var numPieces = this.data.puzzle['level' + this.level].pieces;
+                var rows = Math.floor(Math.sqrt(numPieces));
+                var columns = Math.ceil(numPieces / rows);
+
+                var puzzlePieceContainer = document.createDocumentFragment();
+
+                var puzzle = {
+                    width: imageWidth,
+                    height: imageHeight,
+                    columns: columns,
+                    rows: rows,
+                    img: new Image()
+                };
+
+                puzzle.img = new Image();
+                puzzle.img.src = this.data.image;
+                puzzle.img.onload = function () {
+                    var puzzleGrid = [];
+                    var imgX = 0;
+                    var imgY = 0;
+
+                    var r, c;
+                    var puzzlePiece;
+                    for (r = 0; r < rows; r++) {
+                        for (c = 0; c < columns; c++) {
+                            puzzlePiece = PuzzlePieceFactory.createPiece('jigsaw', {
+                                puzzle: puzzle,
+                                neighborTop: r === 0 ? null : puzzleGrid[r - 1][c],
+                                neighborLeft: c === 0 ? null : puzzleGrid[r][c - 1],
+                                row: r,
+                                column: c,
+                                imgX: imgX,
+                                imgY: imgY
+                            });
+
+                            imgX += (puzzlePiece.leftPadding + puzzlePiece.coreWidth - puzzlePiece.rightInset);
+
+                            puzzlePieceContainer.appendChild(puzzlePiece.canvas);
+                            this.appendTo(this.parent, puzzlePieceContainer);
+
+                            if (!puzzleGrid[r]) {
+                                puzzleGrid[r] = [];
                             }
-                            
-                            //console.log('Value of width:', piece.width, 'Height:', piece.height, "Rows", rows, 'Columns', columns, 'X Position value:', imgXValue);
-                            frag.appendChild(piece);
+                            puzzleGrid[r].push(puzzlePiece);
                         }
-                        
-                        this.appendTo(this.parent, frag);
-                        
-                        $('.jigsaw-piece').draggable({
-                            containment:'.main-wrap',
-                            stack: 'canvas',//Forcess Z-index to top for current clicked canvas
-                            distance: 0,
-                            cursor: 'move',
-                            snap: '#content',
-                            //revert: 'invalid'//flies back to original position
-                        });
-                       
-                    }.bind(this);
-                }
+                        imgX = 0;
+                        imgY += (puzzlePiece.topPadding + puzzlePiece.coreHeight - puzzlePiece.bottomInset);
+                    }
+
+                    $('.jigsaw-piece').draggable({
+                        containment:'.main-wrap',
+                        stack: 'canvas',//Forcess Z-index to top for current clicked canvas
+                        distance: 0,
+                        cursor: 'move',
+                        snap: '#content',
+                        //revert: 'invalid'//flies back to original position
+                    });
+                }.bind(this);
             },
             createImageMap: function (itterator, xValue, yValue) {
                 //Use this to create the map that will be used for the guide and the preview for the puzzle.
