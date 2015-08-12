@@ -1,5 +1,11 @@
 (function () {
-    define(['BaseController', 'Subclass', 'GameBoardView', 'GameBoardModel', 'Events', 'EventList'], function (BaseController, Subclass, GameBoardView, GameBoardModel, Events, EventList) {
+    define(['BaseController', 
+    'Subclass', 
+    'GameBoardView', 
+    'GameBoardModel', 
+    'Events', 
+    'EventList'], 
+    function (BaseController, Subclass, GameBoardView, GameBoardModel, Events, EventList) {
         'use strict';
         var subclass = new Subclass();
         

@@ -1,5 +1,5 @@
 (function () {
-    define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'Dispatch', 'Events', 'jquery-ui'], function (Subclass, BaseController, TrayModel, TrayView, Dispatch, Events) {
+    define(['Subclass', 'BaseController', 'TrayModel', 'TrayView', 'Dispatch', 'Events', 'EventList', 'jquery-ui'], function (Subclass, BaseController, TrayModel, TrayView, Dispatch, Events, EventList) {
         'use strict';
         var subclass = new Subclass();
         var TrayData = {};
@@ -31,6 +31,8 @@
             this.evts.addEvent(window, ['levelChangeConfirmation'], this.confirmedLevelChange);
             this.evts = null;
             this.view = null;
+            
+            EventList.publish('trayLoaded', {loaded:true});
         };
         TrayController.prototype.getData = function (data) {
             return data;

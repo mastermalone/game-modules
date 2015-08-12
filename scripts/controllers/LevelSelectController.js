@@ -27,6 +27,7 @@
             }.bind(LevelSelectController.prototype));
             
             EventList.publish('levelSelectLoaded', {loaded:true});
+            EventList.subscribe('trayLoaded', this.test);
             this.evts = null;         
         };
         
@@ -109,6 +110,9 @@
             ls = null;
         }.bind(LevelSelectController.prototype);
         
+        LevelSelectController.prototype.test = function () {
+            console.log('RECEIVING TRAYLOADED EVENT');
+        };
         
         return LevelSelectController;        
     });
